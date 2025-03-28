@@ -1,5 +1,5 @@
 export const ROUTES = {
   INDEX: '/',
-  SIGNIN: '/signin',
-  SIGNUP: '/signup',
+  AUTH_LOGIN: '/auth',
+  AUTH_REGISTER: '/auth/register',
 };
