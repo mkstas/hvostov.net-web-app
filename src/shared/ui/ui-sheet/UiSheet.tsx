@@ -3,13 +3,12 @@ import { cn } from '@/shared/utils/cn';
 
 interface Props extends PropsWithChildren {
   className?: string;
-  onSubmit?: () => void;
 }
 
-export const UiForm: FC<Props> = ({ children, className, onSubmit }) => {
+export const UiSheet: FC<Props> = ({ children, className }) => {
   return (
-    <form onSubmit={onSubmit} className={cn('grid gap-4', className)}>
+    <div className={cn('rounded-2xl bg-white p-4 shadow-lg shadow-slate-800/10', className)}>
       {children}
-    </form>
+    </div>
   );
 };

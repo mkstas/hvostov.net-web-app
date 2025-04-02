@@ -13,7 +13,7 @@ export const UiButton: FC<Props> = ({ children, className, disabled = false, onC
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        'rounded-2xl bg-indigo-600 px-4 py-3 font-medium text-white outline-offset-3 transition-colors',
+        'rounded-xl bg-indigo-600 px-4 py-3 font-medium text-white outline-offset-3 transition-colors',
         { 'cursor-pointer outline-indigo-600 hover:bg-indigo-700': !disabled },
         { 'cursor-not-allowed bg-indigo-400': disabled },
         className,
