@@ -5,7 +5,7 @@ import './styles.css';
 export default function RootLayot({ children }: PropsWithChildren) {
   return (
     <html lang='ru'>
-      <body>
+      <body className='bg-slate-50 text-slate-800'>
         <Providers>{children}</Providers>
       </body>
     </html>
