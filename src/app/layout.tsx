@@ -11,7 +11,7 @@ const onest = Onest({
 export default function RootLayot({ children }: PropsWithChildren) {
   return (
     <html lang='ru' className={onest.className}>
-      <body className='bg-slate-50 text-slate-800'>
+      <body className='bg-custom-slate text-black'>
         <Providers>{children}</Providers>
       </body>
     </html>

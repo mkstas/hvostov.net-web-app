@@ -7,7 +7,10 @@ export default function AuthLogin() {
     <>
       <UiHeading variant='h2'>Вход</UiHeading>
       <LoginUserForm />
-      <UiLink href={ROUTES.AUTH_REGISTER}>Нет аккаунта? Зарегистрироваться</UiLink>
+      <div>
+        <span>Нет аккаунта? </span>
+        <UiLink href={ROUTES.AUTH_REGISTER}>Зарегистрироваться</UiLink>
+      </div>
     </>
   );
 }

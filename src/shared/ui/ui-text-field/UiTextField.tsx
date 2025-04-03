@@ -22,11 +22,11 @@ const UiTextField = forwardRef<HTMLInputElement, Props>((props, ref) => {
         {...updatedProps}
         className={cn(
           'rounded-xl border bg-white px-4 py-3 outline-none placeholder:text-slate-400 focus:ring',
-          { 'border-slate-300 focus:border-indigo-600 focus:ring-indigo-600': !error },
+          { 'focus:border-custom-blue focus:ring-custom-blue border-slate-300': !error },
           { 'border-red-600 focus:border-red-600 focus:ring-red-600': error },
         )}
       />
-      {error && <span className='text-left text-red-600'>{error}</span>}
+      {error && <div className='mt-2 text-left text-sm text-red-600'>{error}</div>}
     </div>
   );
 });

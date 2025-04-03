@@ -12,7 +12,7 @@ export const UiLink: FC<Props> = ({ children, className, href }) => {
     <Link
       href={href}
       className={cn(
-        'text-indigo-600 outline-offset-3 outline-indigo-600 hover:underline',
+        'text-custom-blue outline-custom-blue outline-offset-3 not-hover:underline',
         className,
       )}
     >
