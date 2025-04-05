@@ -2,7 +2,7 @@
 
 import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { UiButton, UiForm, UiTextField } from '@/shared/ui';
+import { UiButton, UiForm, UiTextField } from '@/shared/ui-kit';
 import { AuthData } from '@/entities/users';
 
 export const RegisterUserForm: FC = () => {

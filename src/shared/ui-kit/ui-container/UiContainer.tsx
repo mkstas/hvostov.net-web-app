@@ -6,5 +6,5 @@ interface Props extends PropsWithChildren {
 }
 
 export const UiContainer: FC<Props> = ({ children, className }) => {
-  return <div className={cn('mx-auto max-w-6xl px-2', className)}>{children}</div>;
+  return <div className={cn('mx-auto max-w-6xl', className)}>{children}</div>;
 };

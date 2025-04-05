@@ -1,15 +1,20 @@
-import { UiHeading, UiLink } from '@/shared/ui';
-import { ROUTES } from '@/shared/utils/constants';
+import { Metadata } from 'next';
+import { UiLink } from '@/shared/ui-kit';
+import { ROUTES } from '@/shared/routes';
 import { RegisterUserForm } from '@/features/register-user-form';
+
+export const metadata: Metadata = {
+  title: 'АнтиХвост | Регистрация',
+};
 
 export default function AuthRegister() {
   return (
     <>
-      <UiHeading variant='h2'>Регистрация</UiHeading>
+      <h2 className='text-xl font-semibold'>Регистрация</h2>
       <RegisterUserForm />
       <div>
         <span>Есть аккаунт? </span>
-        <UiLink href={ROUTES.AUTH_LOGIN}>Войти</UiLink>
+        <UiLink href={ROUTES.AUTH_LOGIN}>Войти в аккаунт</UiLink>
       </div>
     </>
   );
