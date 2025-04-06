@@ -1,15 +1,25 @@
 'use client';
 
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { redirect } from 'next/navigation';
 import { UiButton, UiForm, UiTextField } from '@/shared/ui-kit';
-import { AuthData } from '@/entities/users';
+import { ROUTES } from '@/shared/routes';
+import { AuthData, useRegisterUserMutation } from '@/entities/users';
 
 export const RegisterUserForm: FC = () => {
-  const { control, formState } = useForm<AuthData>({ mode: 'onChange' });
+  const { control, formState, handleSubmit } = useForm<AuthData>({ mode: 'onChange' });
+  const [registerUser, { isLoading: isRegisterLoading, isSuccess: isRegisterSuccess }] =
+    useRegisterUserMutation();
+
+  useEffect(() => {
+    if (isRegisterSuccess) {
+      redirect(ROUTES.INDEX);
+    }
+  }, [isRegisterSuccess]);
 
   return (
-    <UiForm>
+    <UiForm onSubmit={handleSubmit(formData => registerUser(formData))}>
       <Controller
         control={control}
         name='email'
@@ -54,7 +64,7 @@ export const RegisterUserForm: FC = () => {
           />
         )}
       />
-      <UiButton>Зарегистрироваться</UiButton>
+      <UiButton disabled={isRegisterLoading}>Зарегистрироваться</UiButton>
     </UiForm>
   );
 };

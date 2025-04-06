@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { UiContainer } from '@/shared/ui-kit';
 import { TheHeader } from '@/widgets/the-header';
+import { AuthProvider } from './provider';
 
 export const metadata: Metadata = {
   title: 'АнтиХвост',
@@ -8,8 +9,10 @@ export const metadata: Metadata = {
 
 export default function Root() {
   return (
-    <UiContainer>
-      <TheHeader />
-    </UiContainer>
+    <AuthProvider>
+      <UiContainer>
+        <TheHeader />
+      </UiContainer>
+    </AuthProvider>
   );
 }
