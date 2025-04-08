@@ -8,7 +8,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
     <AuthContentProvider>
       <UiContainer>
         <TheHeader />
-        <main className='py-16'>{children}</main>
+        <main className='py-4'>{children}</main>
       </UiContainer>
     </AuthContentProvider>
   );
