@@ -1,16 +1,18 @@
 import { PropsWithChildren } from 'react';
-import { UiSheet, UiLogo } from '@/shared/ui-kit';
-import { AuthLoginProvider } from './provider';
+import { AuthProvider } from '@/shared/providers';
+import { UiLogo, UiSheet } from '@/shared/ui';
 
 export default function AuthLayout({ children }: PropsWithChildren) {
   return (
-    <AuthLoginProvider>
-      <div className='mx-auto max-w-sm space-y-8 py-16 sm:space-y-16'>
+    <AuthProvider>
+      <div className='mx-auto max-w-sm space-y-8 pt-16 pb-16 sm:space-y-16 sm:pt-32'>
         <div className='flex justify-center'>
           <UiLogo />
         </div>
-        <UiSheet className='space-y-6 text-center'>{children}</UiSheet>
+        <UiSheet>
+          <div className='space-y-6 text-center'>{children}</div>
+        </UiSheet>
       </div>
-    </AuthLoginProvider>
+    </AuthProvider>
   );
 }

@@ -1,10 +1,15 @@
 'use client';
 
 import { FC } from 'react';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { useAppDispatch, api } from '@/shared/store';
-import { UiButton, UiSheet } from '@/shared/ui-kit';
+import {
+  AdjustmentsHorizontalIcon,
+  ArrowRightStartOnRectangleIcon,
+} from '@heroicons/react/24/solid';
 import { ROUTES } from '@/shared/routes';
+import { useAppDispatch, api } from '@/shared/stores';
+import { UiSheet } from '@/shared/ui';
 import { useLogoutUserMutation } from '@/entities/users';
 
 export const HeaderSubmenu: FC = () => {
@@ -14,13 +19,35 @@ export const HeaderSubmenu: FC = () => {
   const onClickExit = async () => {
     await logoutUser();
     dispatch(api.util.resetApiState());
-    redirect(ROUTES.AUTH_LOGIN);
+    redirect(ROUTES.INDEX);
   };
 
   return (
-    <div className='absolute top-16 -right-3'>
+    <div
+      id='headerSubmenu'
+      className='shadow-font/5 absolute top-16 -right-3 w-60 overflow-hidden rounded-3xl shadow-lg'
+    >
       <UiSheet>
-        <UiButton onClick={onClickExit}>Выйти</UiButton>
+        <ul className='-mx-4 -my-1'>
+          <li>
+            <Link
+              href={ROUTES.SETTINGS}
+              className='flex w-full cursor-pointer items-center gap-4 px-4 py-2 transition-colors hover:bg-slate-200'
+            >
+              <AdjustmentsHorizontalIcon className='text-blue size-6' />
+              <span>Настройки</span>
+            </Link>
+          </li>
+          <li>
+            <button
+              onClick={onClickExit}
+              className='flex w-full cursor-pointer items-center gap-4 px-4 py-2 transition-colors hover:bg-slate-200'
+            >
+              <ArrowRightStartOnRectangleIcon className='text-blue size-6' />
+              <span>Выйти</span>
+            </button>
+          </li>
+        </ul>
       </UiSheet>
     </div>
   );

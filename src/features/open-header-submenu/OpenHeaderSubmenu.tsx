@@ -7,8 +7,8 @@ interface Props {
 
 export const OpenHeaderSubmenu: FC<Props> = ({ onClick }) => {
   return (
-    <button onClick={onClick} className='cursor-pointer'>
-      <UserCircleIcon className='text-custom-yellow size-9' />
+    <button onClick={onClick} id='headerOpenMenu' className='group cursor-pointer'>
+      <UserCircleIcon className='text-yellow group-hover:text-yellow-dark size-9 transition-colors' />
     </button>
   );
 };

@@ -1,16 +1,18 @@
-'use client';
-
 import { FC } from 'react';
-import { UiLogo } from '@/shared/ui-kit';
+import Link from 'next/link';
+import { ROUTES } from '@/shared/routes';
+import { UiLogo, UiSheet } from '@/shared/ui';
 import { TheHeaderMenu } from './TheHeaderMenu';
 
 export const TheHeader: FC = () => {
   return (
-    <header className='relative flex items-center justify-between rounded-b-3xl bg-white p-3'>
-      <div className='w-24'>
-        <UiLogo />
-      </div>
-      <TheHeaderMenu />
-    </header>
+    <UiSheet className='rounded-t-none'>
+      <header className='relative flex items-center justify-between'>
+        <Link href={ROUTES.DASHBOARD}>
+          <UiLogo />
+        </Link>
+        <TheHeaderMenu />
+      </header>
+    </UiSheet>
   );
 };

@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 
 export const useCheckAuth = () => {
@@ -7,7 +9,9 @@ export const useCheckAuth = () => {
   useEffect(() => {
     const query = async () => {
       try {
-        let response = await fetch('http://localhost:3000/api/users', { credentials: 'include' });
+        let response = await fetch('http://localhost:3000/api/auth/check', {
+          credentials: 'include',
+        });
         if (response.status === 200) {
           setIsLoggedIn(true);
         } else {

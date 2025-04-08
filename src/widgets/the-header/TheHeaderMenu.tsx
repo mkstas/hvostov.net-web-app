@@ -1,15 +1,29 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { OpenHeaderSubmenu } from '@/features/open-header-submenu';
 import { HeaderSubmenu } from '@/features/header-submenu';
 
 export const TheHeaderMenu: FC = () => {
-  const [isOpenSubmenu, setIsOpenSubmenu] = useState<boolean>(true);
+  const [isOpenSubmenu, setIsOpenSubmenu] = useState<boolean>(false);
 
   const openSubmenu = () => {
-    setIsOpenSubmenu(true);
+    setIsOpenSubmenu(!isOpenSubmenu);
   };
+
+  const closeSubmenu = (event: Event) => {
+    const headerSubmenu = (event?.target as HTMLElement).closest('#headerSubmenu');
+    const headerOpenSubmenu = (event?.target as HTMLElement).closest('#headerOpenMenu');
+    if (!headerSubmenu && !headerOpenSubmenu) setIsOpenSubmenu(false);
+  };
+
+  useEffect(() => {
+    if (isOpenSubmenu) {
+      window.addEventListener('mousedown', closeSubmenu);
+    } else {
+      window.removeEventListener('mousedown', closeSubmenu);
+    }
+  }, [isOpenSubmenu]);
 
   return (
     <div className='relative'>
