@@ -1,6 +1,7 @@
 'use client';
 
 import { FC, useEffect, useState } from 'react';
+import { OpenNotifications } from '@/features/open-notifications';
 import { OpenHeaderSubmenu } from '@/features/open-header-submenu';
 import { HeaderSubmenu } from '@/features/header-submenu';
 
@@ -28,6 +29,9 @@ export const TheHeaderMenu: FC = () => {
   return (
     <div className='relative'>
       <ul className='flex items-center gap-3'>
+        <li className='flex'>
+          <OpenNotifications />
+        </li>
         <li className='flex'>
           <OpenHeaderSubmenu onClick={openSubmenu} />
         </li>
