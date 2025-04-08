@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { UserCircleIcon } from '@heroicons/react/24/solid';
+import { UserIcon } from '@heroicons/react/24/solid';
 
 interface Props {
   onClick: () => void;
@@ -7,8 +7,12 @@ interface Props {
 
 export const OpenHeaderSubmenu: FC<Props> = ({ onClick }) => {
   return (
-    <button onClick={onClick} id='headerOpenMenu' className='group cursor-pointer'>
-      <UserCircleIcon className='text-yellow group-hover:text-yellow-dark size-9 transition-colors' />
+    <button
+      onClick={onClick}
+      id='headerOpenMenu'
+      className='bg-yellow hover:bg-yellow-dark cursor-pointer rounded-xl p-2 transition-colors'
+    >
+      <UserIcon className='size-5 text-white' />
     </button>
   );
 };

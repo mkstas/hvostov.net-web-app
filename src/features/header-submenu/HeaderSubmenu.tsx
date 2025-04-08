@@ -25,7 +25,7 @@ export const HeaderSubmenu: FC = () => {
   return (
     <div
       id='headerSubmenu'
-      className='shadow-font/5 absolute top-16 -right-3 w-60 overflow-hidden rounded-3xl shadow-lg'
+      className='shadow-font/5 absolute top-16 -right-4 z-50 w-60 overflow-hidden rounded-3xl shadow-lg'
     >
       <UiSheet>
         <ul className='-mx-4 -my-1'>
