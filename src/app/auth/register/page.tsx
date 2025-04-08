@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function AuthRegister() {
   return (
     <>
-      <h2 className='text-xl font-semibold'>Регистрация</h2>
+      <h1 className='text-xl font-semibold'>Регистрация</h1>
       <RegisterUserForm />
       <div>
         <span>Есть аккаунт? </span>

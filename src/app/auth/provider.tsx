@@ -1,22 +1,20 @@
 'use client';
 
+import { FC, PropsWithChildren, useEffect } from 'react';
 import { redirect } from 'next/navigation';
-import { FC, PropsWithChildren } from 'react';
+import { useCheckAuth } from '@/shared/hooks';
 import { ROUTES } from '@/shared/routes';
-import { useFindUserQuery } from '@/entities/users';
 
-export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
-  const { isLoading, isError, isSuccess } = useFindUserQuery();
+export const AuthLoginProvider: FC<PropsWithChildren> = ({ children }) => {
+  const { isLoading, isLoggedIn } = useCheckAuth();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  useEffect(() => {
+    if (!isLoading && isLoggedIn) redirect(ROUTES.INDEX);
+  }, [isLoading, isLoggedIn]);
+
+  if (isLoading || isLoggedIn) {
+    return null;
   }
 
-  if (isSuccess) {
-    redirect(ROUTES.INDEX);
-  }
-
-  if (isError) {
-    return children;
-  }
+  return children;
 };

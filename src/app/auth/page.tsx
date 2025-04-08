@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function AuthLogin() {
   return (
     <>
-      <h2 className='text-xl font-semibold'>Вход в аккаунт</h2>
+      <h1 className='text-xl font-semibold'>Вход в аккаунт</h1>
       <LoginUserForm />
       <div>
         <span>Нет аккаунта? </span>
