@@ -2,7 +2,7 @@
 
 import { FC, PropsWithChildren, useEffect } from 'react';
 import { redirect } from 'next/navigation';
-import { useCheckAuth } from '@/shared/hooks';
+import { useCheckAuth } from '@/shared/utils';
 import { ROUTES } from '@/shared/routes';
 
 export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {

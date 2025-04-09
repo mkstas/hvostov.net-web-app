@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { UiSheet } from '@/shared/ui';
+import { UiSheet } from '@/shared/_old/ui';
 import { PlusIcon } from '@heroicons/react/24/solid';
-import { cn } from '@/shared/hooks';
+import { cn } from '@/shared/_old/hooks';
 
 export const TheFilters: FC = () => {
   const selected = true;

@@ -3,13 +3,10 @@
 import { FC } from 'react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import {
-  AdjustmentsHorizontalIcon,
-  ArrowRightStartOnRectangleIcon,
-} from '@heroicons/react/24/solid';
-import { ROUTES } from '@/shared/routes';
+import { AdjustmentsHorizontalIcon, ArrowRightStartOnRectangleIcon } from '@heroicons/react/24/solid';
+import { UiSheet } from '@/components';
 import { useAppDispatch, api } from '@/shared/stores';
-import { UiSheet } from '@/shared/ui';
+import { ROUTES } from '@/shared/routes';
 import { useLogoutUserMutation } from '@/entities/users';
 
 export const HeaderSubmenu: FC = () => {
@@ -34,7 +31,7 @@ export const HeaderSubmenu: FC = () => {
               href={ROUTES.SETTINGS}
               className='flex w-full cursor-pointer items-center gap-4 px-4 py-2 transition-colors hover:bg-slate-200'
             >
-              <AdjustmentsHorizontalIcon className='text-blue size-6' />
+              <AdjustmentsHorizontalIcon className='text-c-blue-500 size-6' />
               <span>Настройки</span>
             </Link>
           </li>
@@ -43,7 +40,7 @@ export const HeaderSubmenu: FC = () => {
               onClick={onClickExit}
               className='flex w-full cursor-pointer items-center gap-4 px-4 py-2 transition-colors hover:bg-slate-200'
             >
-              <ArrowRightStartOnRectangleIcon className='text-blue size-6' />
+              <ArrowRightStartOnRectangleIcon className='text-c-blue-500 size-6' />
               <span>Выйти</span>
             </button>
           </li>

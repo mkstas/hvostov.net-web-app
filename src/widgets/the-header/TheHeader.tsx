@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Link from 'next/link';
+import { UiLogo, UiSheet } from '@/components';
 import { ROUTES } from '@/shared/routes';
-import { UiLogo, UiSheet } from '@/shared/ui';
 import { TheHeaderMenu } from './TheHeaderMenu';
 
 export const TheHeader: FC = () => {

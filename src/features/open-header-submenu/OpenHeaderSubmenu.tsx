@@ -10,7 +10,7 @@ export const OpenHeaderSubmenu: FC<Props> = ({ onClick }) => {
     <button
       onClick={onClick}
       id='headerOpenMenu'
-      className='bg-yellow hover:bg-yellow-dark cursor-pointer rounded-xl p-2 transition-colors'
+      className='bg-c-yellow-500 hover:bg-c-yellow-600 outline-c-yellow-500 cursor-pointer rounded-xl p-2 outline-offset-3 transition-colors'
     >
       <UserIcon className='size-5 text-white' />
     </button>

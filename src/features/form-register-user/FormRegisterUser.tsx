@@ -4,13 +4,12 @@ import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { redirect } from 'next/navigation';
 import { ROUTES } from '@/shared/routes';
-import { UiButton, UiForm, UiInput } from '@/shared/ui';
+import { UiButton, UiForm, UiInput } from '@/components';
 import { AuthData, useRegisterUserMutation } from '@/entities/users';
 
 export const FormRegisterUser: FC = () => {
   const { control, formState, handleSubmit } = useForm<AuthData>({ mode: 'onChange' });
-  const [registerUser, { isLoading: isRegisterLoading, isSuccess: isRegisterSuccess }] =
-    useRegisterUserMutation();
+  const [registerUser, { isLoading: isRegisterLoading, isSuccess: isRegisterSuccess }] = useRegisterUserMutation();
 
   useEffect(() => {
     if (isRegisterSuccess) {

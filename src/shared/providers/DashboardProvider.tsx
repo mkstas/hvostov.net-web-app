@@ -2,14 +2,14 @@
 
 import { FC, PropsWithChildren, useEffect } from 'react';
 import { redirect } from 'next/navigation';
-import { useCheckAuth } from '@/shared/hooks';
+import { useCheckAuth } from '@/shared/utils';
 import { ROUTES } from '@/shared/routes';
 
-export const AuthContentProvider: FC<PropsWithChildren> = ({ children }) => {
+export const DashboardProvider: FC<PropsWithChildren> = ({ children }) => {
   const { isLoading, isLoggedIn } = useCheckAuth();
 
   useEffect(() => {
-    if (!isLoading && !isLoggedIn) redirect(ROUTES.LOGIN);
+    if (!isLoading && !isLoggedIn) redirect(ROUTES.INDEX);
   }, [isLoading, isLoggedIn]);
 
   if (isLoading || !isLoggedIn) {

@@ -1,5 +1,5 @@
 import { forwardRef, HTMLProps } from 'react';
-import { cn } from '@/shared/hooks';
+import { cn } from '@/shared/utils';
 
 interface Props extends HTMLProps<HTMLInputElement> {
   className?: string;
@@ -21,12 +21,12 @@ const UiInput = forwardRef<HTMLInputElement, Props>((props, ref) => {
         ref={ref}
         {...updatedProps}
         className={cn(
-          'rounded-xl border bg-white px-4 py-3 outline-none placeholder:text-slate-400 focus:ring',
-          { 'focus:border-blue focus:ring-blue border-slate-300': !error },
-          { 'border-red-600 focus:border-red-600 focus:ring-red-600': error },
+          'placeholder:text-c-slate-300 rounded-xl border bg-white px-4 py-3 outline-none focus:ring',
+          { 'focus:border-c-blue-500 focus:ring-c-blue-500 border-c-slate-400': !error },
+          { 'border-c-red-500 focus:border-c-red-500 focus:ring-c-red-500': error },
         )}
       />
-      {error && <div className='mt-2 text-left text-sm text-red-600'>{error}</div>}
+      {error && <div className='text-c-red-500 mt-2 text-left text-sm'>{error}</div>}
     </div>
   );
 });

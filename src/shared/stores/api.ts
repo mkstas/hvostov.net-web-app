@@ -5,11 +5,7 @@ const baseQuery = fetchBaseQuery({
   credentials: 'include',
 });
 
-const baseQueryRefresh = async (
-  args: string | FetchArgs,
-  api: BaseQueryApi,
-  extraOptions: object,
-) => {
+const baseQueryRefresh = async (args: string | FetchArgs, api: BaseQueryApi, extraOptions: object) => {
   let response = await baseQuery(args, api, extraOptions);
 
   if (response.error?.status === 401) {

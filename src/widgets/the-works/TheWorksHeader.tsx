@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { ArrowsUpDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
-import { UiButton } from '@/shared/ui';
+import { UiButton } from '@/shared/_old/ui';
 
 export const TheWorksHeader: FC = () => {
   return (

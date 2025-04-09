@@ -19,9 +19,4 @@ export const usersApi = api.injectEndpoints({
   overrideExisting: true,
 });
 
-export const {
-  useRegisterUserMutation,
-  useLoginUserMutation,
-  useLogoutUserMutation,
-  useCheckAuthQuery,
-} = usersApi;
+export const { useRegisterUserMutation, useLoginUserMutation, useLogoutUserMutation, useCheckAuthQuery } = usersApi;

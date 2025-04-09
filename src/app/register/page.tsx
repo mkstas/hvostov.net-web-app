@@ -1,20 +1,20 @@
 import { UiLink, UiLogo, UiSheet } from '@/components';
 import { ROUTES } from '@/shared/routes';
-import { FormLoginUser } from '@/features/form-login-user';
+import { FormRegisterUser } from '@/features/form-register-user';
 import { AuthProvider } from '@/shared/providers';
 
-export default function Index() {
+export default function Register() {
   return (
     <AuthProvider>
       <div className='mx-auto max-w-sm space-y-8 py-32'>
         <UiLogo className='mx-auto' />
         <UiSheet>
           <div className='space-y-8'>
-            <h1 className='text-center text-xl font-semibold'>Вход в аккаунт</h1>
-            <FormLoginUser />
+            <h1 className='text-center text-xl font-semibold'>Регистрация</h1>
+            <FormRegisterUser />
             <div className='text-center'>
-              <span>Нет аккаунта? </span>
-              <UiLink href={ROUTES.REGISTER}>Зарегистрироваться</UiLink>
+              <span>Есть аккаунт? </span>
+              <UiLink href={ROUTES.INDEX}>Войти в аккаунт</UiLink>
             </div>
           </div>
         </UiSheet>

@@ -1,15 +1,15 @@
-import { PropsWithChildren } from 'react';
-import { AuthContentProvider } from '@/shared/providers';
-import { UiContainer } from '@/shared/ui';
+import { UiContainer } from '@/components';
+import { DashboardProvider } from '@/shared/providers';
 import { TheHeader } from '@/widgets/the-header';
+import { PropsWithChildren } from 'react';
 
 export default function DashboardLayout({ children }: PropsWithChildren) {
   return (
-    <AuthContentProvider>
+    <DashboardProvider>
       <UiContainer>
         <TheHeader />
         <main className='py-4'>{children}</main>
       </UiContainer>
-    </AuthContentProvider>
+    </DashboardProvider>
   );
 }
