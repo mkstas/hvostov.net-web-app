@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { UiSheet } from '@/shared/_old/ui';
+import { UiSheet } from '@/components';
 import { TheWorksHeader } from './TheWorksHeader';
 
 export const TheWorks: FC = () => {

@@ -3,7 +3,7 @@
 import { FC, useEffect, useState } from 'react';
 import { OpenNotifications } from '@/features/open-notifications';
 import { OpenHeaderSubmenu } from '@/features/open-header-submenu';
-import { HeaderSubmenu } from '@/features/header-submenu';
+import { TheHeaderSubmenu } from './TheHeaderSubmenu';
 
 export const TheHeaderMenu: FC = () => {
   const [isOpenSubmenu, setIsOpenSubmenu] = useState<boolean>(false);
@@ -28,7 +28,7 @@ export const TheHeaderMenu: FC = () => {
 
   return (
     <div className='relative'>
-      <ul className='flex items-center gap-3'>
+      <ul className='flex items-center space-x-3'>
         <li className='flex'>
           <OpenNotifications />
         </li>
@@ -36,7 +36,7 @@ export const TheHeaderMenu: FC = () => {
           <OpenHeaderSubmenu onClick={openSubmenu} />
         </li>
       </ul>
-      {isOpenSubmenu && <HeaderSubmenu />}
+      {isOpenSubmenu && <TheHeaderSubmenu />}
     </div>
   );
 };

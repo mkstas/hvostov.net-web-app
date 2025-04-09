@@ -3,8 +3,8 @@
 import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { redirect } from 'next/navigation';
-import { UiButton, UiForm, UiInput } from '@/components';
 import { ROUTES } from '@/shared/routes';
+import { UiButton, UiForm, UiInput } from '@/components';
 import { AuthData, useLoginUserMutation } from '@/entities/users';
 
 export const FormLoginUser: FC = () => {
