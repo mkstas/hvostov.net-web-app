@@ -10,7 +10,7 @@ const onest = Onest({
 export default function IndexLayout({ children }: PropsWithChildren) {
   return (
     <html lang='ru' className={onest.className}>
-      <body className='bg-c-slate-200 text-c-slate-500'>
+      <body className='bg-c-slate-200 text-c-slate-600'>
         <StoreProvider>{children}</StoreProvider>
       </body>
     </html>

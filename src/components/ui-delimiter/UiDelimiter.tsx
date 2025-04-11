@@ -6,5 +6,5 @@ interface Props {
 }
 
 export const UiDelimiter: FC<Props> = ({ className }) => {
-  return <div className={cn('bg-c-slate-300 h-0.25', className)}></div>;
+  return <div className={cn('bg-c-slate-400 h-0.25', className)}></div>;
 };
