@@ -2,12 +2,15 @@
 
 import { FC, useEffect, useState } from 'react';
 import { UiDelimiter, UiSheet } from '@/components';
-import { SelectFilterItem } from '@/features/select-filter-item';
+import { useFindSubjectsQuery } from '@/entities/subjects';
+import { SelectFilterItem, SelectFilterItemSkeleton } from '@/features/select-filter-item';
 import { CreateFilterItem } from '@/features/create-filter-item';
 import { ResetFilterItem } from '@/features/reset-filter-item';
-import { CreateFilterModal } from '@/features/create-filter-modal';
+import { CreateSubjectModal } from '@/features/create-subject-modal';
 
 export const TheFilterSubjects: FC = () => {
+  const { data: subjects, isLoading: isLoadingSubjects } = useFindSubjectsQuery();
+  const skeletonArray = Array(3).fill(0);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   const closeModal = (event: Event) => {
@@ -24,40 +27,27 @@ export const TheFilterSubjects: FC = () => {
     }
   }, [isOpenModal]);
 
-  const subjects = [
-    {
-      subjectId: 1,
-      title: 'Программирование',
-      isSelected: true,
-    },
-    {
-      subjectId: 2,
-      title: 'Программирование',
-      isSelected: true,
-    },
-    {
-      subjectId: 3,
-      title: 'Программирование',
-      isSelected: false,
-    },
-  ];
-
   return (
     <UiSheet>
       <section className='space-y-2'>
         <h2 className='text-lg font-medium'>Предметы</h2>
         <div className='space-y-1'>
-          <ul className='space-y-1'>
-            {subjects.map(subject => (
-              <li key={subject.subjectId}>
-                <SelectFilterItem title={subject.title} isSelected={subject.isSelected} />
-              </li>
-            ))}
-          </ul>
-          <div>
-            <CreateFilterItem onClick={() => setIsOpenModal(true)} />
-            {isOpenModal && <CreateFilterModal />}
-          </div>
+          {isLoadingSubjects && skeletonArray.map((_, index) => <SelectFilterItemSkeleton key={index} />)}
+          {!isLoadingSubjects && (
+            <>
+              <ul className='space-y-1'>
+                {subjects?.map(subject => (
+                  <li key={subject.subjectId}>
+                    <SelectFilterItem title={subject.title} isSelected={false} />
+                  </li>
+                ))}
+              </ul>
+              <div>
+                <CreateFilterItem onClick={() => setIsOpenModal(true)} />
+                {isOpenModal && <CreateSubjectModal />}
+              </div>
+            </>
+          )}
         </div>
         <UiDelimiter />
         <ResetFilterItem />
