@@ -3,7 +3,7 @@ import { cn } from '@/shared/utils';
 
 interface Props extends PropsWithChildren {
   className?: string;
-  variant?: 'sm' | 'md';
+  variant?: 'md' | 'lg';
   disabled?: boolean;
   onClick?: () => void;
 }
@@ -17,8 +17,8 @@ export const UiButton: FC<Props> = ({ children, className, variant = 'md', disab
         'rounded-xl font-medium text-white outline-offset-3 transition-colors',
         { 'bg-c-blue-500 outline-c-blue-500 hover:bg-c-blue-600 cursor-pointer': !disabled },
         { 'bg-c-blue-400 cursor-not-allowed': disabled },
-        { 'px-2 py-1': variant === 'sm' },
-        { 'px-4 py-3': variant === 'md' },
+        { 'px-3 py-2': variant === 'md' },
+        { 'px-4 py-3': variant === 'lg' },
         className,
       )}
     >
