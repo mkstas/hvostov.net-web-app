@@ -5,4 +5,5 @@ export * from './ui-form';
 export * from './ui-input';
 export * from './ui-link';
 export * from './ui-logo';
+export * from './ui-modal';
 export * from './ui-sheet';
