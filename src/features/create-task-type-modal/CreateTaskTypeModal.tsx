@@ -1,16 +1,26 @@
-import { FC } from 'react';
+'use client';
+
+import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { UiModal, UiForm, UiInput, UiButton } from '@/components';
 import { useCreateTaskTypeMutation, TaskTypeData } from '@/entities/task-types';
 
-export const CreateTaskTypeModal: FC = () => {
-  const { control, formState, handleSubmit } = useForm<TaskTypeData>({ mode: 'onChange' });
+interface Props {
+  closeModal: () => void;
+}
 
-  const [createTaskType, {}] = useCreateTaskTypeMutation();
+export const CreateTaskTypeModal: FC<Props> = ({ closeModal }) => {
+  const { control, formState, handleSubmit } = useForm<TaskTypeData>({ mode: 'onChange' });
+  const [createTaskType, { isSuccess: isSuccessCreate }] = useCreateTaskTypeMutation();
+
+  useEffect(() => {
+    if (isSuccessCreate) {
+      closeModal();
+    }
+  }, [isSuccessCreate, closeModal]);
 
   return (
-    <UiModal>
-      <h3 className='mb-4 font-semibold'>Добавление типа работы</h3>
+    <UiModal title='Добавление типа работы'>
       <UiForm onSubmit={handleSubmit(formData => createTaskType(formData))}>
         <Controller
           control={control}

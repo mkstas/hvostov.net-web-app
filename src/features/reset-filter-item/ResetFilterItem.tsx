@@ -1,8 +1,18 @@
 import { FC } from 'react';
+import { useResetFilter } from './useResetFilter';
 
-export const ResetFilterItem: FC = () => {
+interface Props {
+  filterName: string;
+}
+
+export const ResetFilterItem: FC<Props> = ({ filterName }) => {
+  const { onClickButton } = useResetFilter(filterName);
+
   return (
-    <button className='text-c-blue-500 hover:text-c-blue-600 w-full cursor-pointer font-medium transition-colors'>
+    <button
+      onClick={onClickButton}
+      className='text-c-blue-500 hover:text-c-blue-600 outline-c-slate-600 w-full cursor-pointer font-medium transition-colors'
+    >
       Сбросить
     </button>
   );

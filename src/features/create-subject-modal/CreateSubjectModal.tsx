@@ -1,16 +1,26 @@
-import { FC } from 'react';
+'use client';
+
+import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { UiModal, UiForm, UiInput, UiButton } from '@/components';
 import { SubjectData, useCreateSubjectMutation } from '@/entities/subjects';
 
-export const CreateSubjectModal: FC = () => {
-  const { control, formState, handleSubmit } = useForm<SubjectData>({ mode: 'onChange' });
+interface Props {
+  closeModal: () => void;
+}
 
-  const [createSubject, {}] = useCreateSubjectMutation();
+export const CreateSubjectModal: FC<Props> = ({ closeModal }) => {
+  const { control, formState, handleSubmit } = useForm<SubjectData>({ mode: 'onChange' });
+  const [createSubject, { isSuccess: isSuccessCreate }] = useCreateSubjectMutation();
+
+  useEffect(() => {
+    if (isSuccessCreate) {
+      closeModal();
+    }
+  }, [isSuccessCreate, closeModal]);
 
   return (
-    <UiModal>
-      <h3 className='mb-4 font-semibold'>Добавление предмета</h3>
+    <UiModal title='Добавление учебной дисциплины'>
       <UiForm onSubmit={handleSubmit(formData => createSubject(formData))}>
         <Controller
           control={control}
@@ -18,10 +28,6 @@ export const CreateSubjectModal: FC = () => {
           defaultValue=''
           rules={{
             required: 'Это поле обязательно',
-            minLength: {
-              value: 8,
-              message: 'Не менее 8 символов',
-            },
           }}
           render={({ field }) => (
             <UiInput
