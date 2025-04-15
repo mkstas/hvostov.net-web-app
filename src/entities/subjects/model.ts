@@ -1,7 +1,7 @@
-export interface SubjectData {
+export interface SubjectCreateData {
   title: string;
 }
 
-export interface Subject extends SubjectData {
+export interface Subject extends SubjectCreateData {
   subjectId: number;
 }

@@ -12,7 +12,7 @@ export const TheHeaderMenu: FC = () => {
     <div className='relative'>
       <ul className='flex items-center space-x-3'>
         <li className='flex'>
-          <OpenHeaderSubmenu onClick={openSubmenu} />
+          <OpenHeaderSubmenu onClickButton={openSubmenu} />
         </li>
       </ul>
       {isOpenSubmenu && <TheHeaderSubmenu />}

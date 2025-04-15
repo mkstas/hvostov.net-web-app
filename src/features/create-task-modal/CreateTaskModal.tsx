@@ -3,40 +3,26 @@
 import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { UiButton, UiForm, UiInput, UiModal, UiSelect, UiTextArea } from '@/components';
-import { TaskData, useCreateTaskMutation } from '@/entities/tasks';
-import { useFindSubjectsQuery } from '@/entities/subjects';
-import { useFindTaskTypesQuery } from '@/entities/task-types';
+import { TaskCreateData, useCreateTaskMutation } from '@/entities/tasks';
+import { useCreateTaskModal } from './useCreateTaskModal';
 
 interface Props {
   closeModal: () => void;
 }
 
 export const CreateTaskModal: FC<Props> = ({ closeModal }) => {
-  const { control, formState, handleSubmit } = useForm<TaskData>({ mode: 'onChange' });
-  const { data: subjects } = useFindSubjectsQuery();
-  const { data: taskTypes } = useFindTaskTypesQuery();
-  const [createTask, { isSuccess: isSuccessCreate }] = useCreateTaskMutation();
-
-  const convertToOptions = (data: unknown[]) => {
-    const options: { value: string; label: string }[] = [];
-    data.map(item => {
-      options.push({ value: item.subjectId || item.taskTypeId, label: item.title });
-    });
-    return options;
-  };
-
-  const onSubmit = data => {
-    console.log(data);
-  };
+  const { subjects, taskTypes, convertSubjectsToOptions, convertTaskTypesToOptions } = useCreateTaskModal();
+  const { control, formState, handleSubmit } = useForm<TaskCreateData>({ mode: 'onChange' });
+  const [createTask, { isSuccess }] = useCreateTaskMutation();
 
   useEffect(() => {
-    if (isSuccessCreate) {
+    if (isSuccess) {
       closeModal();
     }
-  }, [isSuccessCreate, closeModal]);
+  }, [isSuccess, closeModal]);
 
   return (
-    <UiModal title='Добавление работы'>
+    <UiModal title='Добавление работы' overlayId='modalOverlay' closeButtonId='modalCloseButton'>
       <UiForm onSubmit={handleSubmit(formData => createTask(formData))}>
         <Controller
           control={control}
@@ -74,6 +60,7 @@ export const CreateTaskModal: FC<Props> = ({ closeModal }) => {
         <Controller
           control={control}
           name='deadline'
+          defaultValue=''
           rules={{
             required: 'Это поле обязательно',
           }}
@@ -92,14 +79,28 @@ export const CreateTaskModal: FC<Props> = ({ closeModal }) => {
           name='subjectId'
           defaultValue={subjects![0].subjectId}
           render={({ field }) => (
-            <UiSelect label='Учебная дисциплина' options={convertToOptions(subjects)} {...field} />
+            <UiSelect
+              id='subjectId'
+              label='Учебная дисциплина'
+              error={formState.errors.subjectId?.message}
+              options={convertSubjectsToOptions()}
+              {...field}
+            />
           )}
         />
         <Controller
           control={control}
           name='taskTypeId'
           defaultValue={taskTypes![0].taskTypeId}
-          render={({ field }) => <UiSelect label='Тип работы' options={convertToOptions(taskTypes)} {...field} />}
+          render={({ field }) => (
+            <UiSelect
+              id='taskTypeId'
+              label='Тип работы'
+              error={formState.errors.taskTypeId?.message}
+              options={convertTaskTypesToOptions()}
+              {...field}
+            />
+          )}
         />
         <div className='ml-auto'>
           <UiButton>Добавить</UiButton>

@@ -3,24 +3,24 @@
 import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { UiModal, UiForm, UiInput, UiButton } from '@/components';
-import { SubjectData, useCreateSubjectMutation } from '@/entities/subjects';
+import { SubjectCreateData, useCreateSubjectMutation } from '@/entities/subjects';
 
 interface Props {
   closeModal: () => void;
 }
 
 export const CreateSubjectModal: FC<Props> = ({ closeModal }) => {
-  const { control, formState, handleSubmit } = useForm<SubjectData>({ mode: 'onChange' });
-  const [createSubject, { isSuccess: isSuccessCreate }] = useCreateSubjectMutation();
+  const { control, formState, handleSubmit } = useForm<SubjectCreateData>({ mode: 'onChange' });
+  const [createSubject, { isSuccess }] = useCreateSubjectMutation();
 
   useEffect(() => {
-    if (isSuccessCreate) {
+    if (isSuccess) {
       closeModal();
     }
-  }, [isSuccessCreate, closeModal]);
+  }, [isSuccess, closeModal]);
 
   return (
-    <UiModal title='Добавление учебной дисциплины'>
+    <UiModal title='Добавление учебной дисциплины' overlayId='modalOverlay' closeButtonId='modalCloseButton'>
       <UiForm onSubmit={handleSubmit(formData => createSubject(formData))}>
         <Controller
           control={control}

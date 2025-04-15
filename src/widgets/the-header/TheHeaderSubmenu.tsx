@@ -2,22 +2,13 @@
 
 import { FC } from 'react';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 import { AdjustmentsHorizontalIcon, ArrowRightStartOnRectangleIcon } from '@heroicons/react/24/solid';
-import { UiSheet } from '@/components';
 import { ROUTES } from '@/shared/routes';
-import { useAppDispatch, api } from '@/shared/stores';
-import { useLogoutUserMutation } from '@/entities/users';
+import { UiSheet } from '@/components';
+import { useHeaderSubmenu } from './useHeaderSubmenu';
 
 export const TheHeaderSubmenu: FC = () => {
-  const dispatch = useAppDispatch();
-  const [logoutUser] = useLogoutUserMutation();
-
-  const onClickExit = async () => {
-    await logoutUser();
-    dispatch(api.util.resetApiState());
-    redirect(ROUTES.INDEX);
-  };
+  const { onClickExit } = useHeaderSubmenu();
 
   return (
     <div
@@ -29,7 +20,7 @@ export const TheHeaderSubmenu: FC = () => {
           <li>
             <Link
               href={ROUTES.SETTINGS}
-              className='hover:bg-c-slate-200 flex w-full cursor-pointer items-center gap-4 px-4 py-2 transition-colors'
+              className='hover:bg-c-slate-200 focus-visible:bg-c-slate-200 flex w-full cursor-pointer items-center gap-4 px-4 py-2 transition-colors outline-none'
             >
               <AdjustmentsHorizontalIcon className='text-c-blue-500 size-6' />
               <span>Настройки</span>
@@ -38,7 +29,7 @@ export const TheHeaderSubmenu: FC = () => {
           <li>
             <button
               onClick={onClickExit}
-              className='hover:bg-c-slate-200 flex w-full cursor-pointer items-center gap-4 px-4 py-2 transition-colors'
+              className='hover:bg-c-slate-200 focus-visible:bg-c-slate-200 flex w-full cursor-pointer items-center gap-4 px-4 py-2 transition-colors outline-none'
             >
               <ArrowRightStartOnRectangleIcon className='text-c-blue-500 size-6' />
               <span>Выйти</span>

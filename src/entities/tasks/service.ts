@@ -1,9 +1,9 @@
 import { api } from '@/shared/stores';
-import { Task, TaskData } from './model';
+import { Task, TaskCreateData } from './model';
 
 export const taskApi = api.injectEndpoints({
   endpoints: builder => ({
-    createTask: builder.mutation<Task, TaskData>({
+    createTask: builder.mutation<Task, TaskCreateData>({
       query: body => ({ url: '/tasks', method: 'POST', body }),
       invalidatesTags: ['tasks'],
     }),

@@ -1,5 +1,6 @@
 import { FC } from 'react';
+import { UiSkeleton } from '@/components';
 
 export const SelectFilterItemSkeleton: FC = () => {
-  return <div className='h-8 animate-pulse rounded-xl bg-slate-200'></div>;
+  return <UiSkeleton className='h-8' />;
 };

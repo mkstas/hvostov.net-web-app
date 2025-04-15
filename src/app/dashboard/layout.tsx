@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
-import { UiContainer } from '@/components';
 import { DashboardProvider } from '@/shared/providers';
+import { UiContainer } from '@/components';
 import { TheHeader } from '@/widgets/the-header';
 
 export default function DashboardLayout({ children }: PropsWithChildren) {

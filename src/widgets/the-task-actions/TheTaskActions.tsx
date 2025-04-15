@@ -6,7 +6,7 @@ import { OpenCreateTask } from '@/features/open-create-task';
 import { CreateTaskModal } from '@/features/create-task-modal';
 
 export const TheTaskActions: FC = () => {
-  const { isOpenModal, openModal, closeModal } = useOpenModal();
+  const { isOpenModal, openModal, closeModal } = useOpenModal('modalOverlay', 'modalCloseButton');
 
   return (
     <div className='grid grid-cols-[auto_1fr_auto] items-center space-x-4'>

@@ -1,9 +1,9 @@
 import { api } from '@/shared/stores';
-import { Subject, SubjectData } from './model';
+import { Subject, SubjectCreateData } from './model';
 
 export const subjectApi = api.injectEndpoints({
   endpoints: builder => ({
-    createSubject: builder.mutation<Subject, SubjectData>({
+    createSubject: builder.mutation<Subject, SubjectCreateData>({
       query: body => ({ url: '/subjects', method: 'POST', body }),
       invalidatesTags: ['subjects'],
     }),

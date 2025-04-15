@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-export const useOpenModal = () => {
+export const useOpenModal = (overlayId: string, closeButtonId: string) => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   const openModal = () => {
@@ -13,11 +13,14 @@ export const useOpenModal = () => {
     setIsOpenModal(false);
   };
 
-  const onClickModal = (event: Event) => {
-    const modalOverlay = (event?.target as HTMLElement) === document.getElementById('modalOverlay');
-    const modalCloseButton = (event?.target as HTMLElement).closest('#modalCloseButton');
-    if (modalOverlay || modalCloseButton) setIsOpenModal(false);
-  };
+  const onClickModal = useCallback(
+    (event: Event) => {
+      const modalOverlay = (event?.target as HTMLElement) === document.getElementById(overlayId);
+      const modalCloseButton = (event?.target as HTMLElement).closest(`#${closeButtonId}`);
+      if (modalOverlay || modalCloseButton) setIsOpenModal(false);
+    },
+    [closeButtonId, overlayId],
+  );
 
   useEffect(() => {
     if (isOpenModal) {
@@ -25,7 +28,7 @@ export const useOpenModal = () => {
     } else {
       window.removeEventListener('mousedown', onClickModal);
     }
-  }, [isOpenModal]);
+  }, [isOpenModal, onClickModal]);
 
   return { isOpenModal, setIsOpenModal, openModal, closeModal, onClickModal };
 };

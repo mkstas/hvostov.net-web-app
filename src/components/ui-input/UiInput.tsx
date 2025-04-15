@@ -22,11 +22,13 @@ const UiInput = forwardRef<HTMLInputElement, Props>((props, ref) => {
         ref={ref}
         {...updatedProps}
         className={cn(
-          'placeholder:text-c-slate-500 rounded-xl border bg-white px-4 py-3 outline-none focus:ring',
-          { 'px-3 py-2': variant === 'md' },
-          { 'px-4 py-3': variant === 'lg' },
-          { 'focus:border-c-blue-500 focus:ring-c-blue-500 border-c-slate-400': !error },
-          { 'border-c-red-500 focus:border-c-red-500 focus:ring-c-red-500': error },
+          'placeholder:text-c-slate-500 rounded-xl border bg-white outline-none focus:ring',
+          {
+            'px-3 py-2': variant === 'md',
+            'px-4 py-3': variant === 'lg',
+            'focus:border-c-blue-500 focus:ring-c-blue-500 border-c-slate-400': !error,
+            'border-c-red-500 focus:border-c-red-500 focus:ring-c-red-500': error,
+          },
           className,
         )}
       />

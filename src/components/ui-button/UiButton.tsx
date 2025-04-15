@@ -15,10 +15,12 @@ export const UiButton: FC<Props> = ({ children, className, variant = 'md', disab
       disabled={disabled}
       className={cn(
         'rounded-xl font-medium text-white outline-offset-3 transition-colors',
-        { 'bg-c-blue-500 outline-c-blue-500 hover:bg-c-blue-600 cursor-pointer': !disabled },
-        { 'bg-c-blue-400 cursor-not-allowed': disabled },
-        { 'px-3 py-2': variant === 'md' },
-        { 'px-4 py-3': variant === 'lg' },
+        {
+          'bg-c-blue-500 outline-c-blue-500 hover:bg-c-blue-600 cursor-pointer': !disabled,
+          'bg-c-blue-400 cursor-not-allowed': disabled,
+          'px-3 py-2': variant === 'md',
+          'px-4 py-3': variant === 'lg',
+        },
         className,
       )}
     >

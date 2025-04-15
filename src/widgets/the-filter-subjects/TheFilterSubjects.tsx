@@ -1,28 +1,28 @@
 'use client';
 
 import { FC } from 'react';
-import { UiDelimiter, UiSheet } from '@/components';
 import { useOpenModal } from '@/shared/utils';
+import { UiDelimiter, UiSheet } from '@/components';
 import { useFindSubjectsQuery } from '@/entities/subjects';
+import { OpenCreateFilter } from '@/features/open-create-filter';
 import { SelectFilterItem, SelectFilterItemSkeleton } from '@/features/select-filter-item';
-import { CreateFilterItem } from '@/features/create-filter-item';
 import { ResetFilterItem } from '@/features/reset-filter-item';
 import { CreateSubjectModal } from '@/features/create-subject-modal';
 
 export const TheFilterSubjects: FC = () => {
-  const { isOpenModal, openModal, closeModal } = useOpenModal();
-  const { data: subjects, isLoading: isLoadingSubjects } = useFindSubjectsQuery();
+  const { isOpenModal, openModal, closeModal } = useOpenModal('modalOverlay', 'modalCloseButton');
+  const { data: subjects, isLoading } = useFindSubjectsQuery();
 
   return (
     <UiSheet>
       <section className='space-y-2'>
         <h2 className='text-lg font-medium'>Предметы</h2>
         <div className='space-y-1'>
-          {isLoadingSubjects &&
+          {isLoading &&
             Array(3)
               .fill(0)
               .map((_, index) => <SelectFilterItemSkeleton key={index} />)}
-          {!isLoadingSubjects && (
+          {!isLoading && (
             <>
               <ul className='space-y-1'>
                 {subjects?.map(subject => (
@@ -32,7 +32,7 @@ export const TheFilterSubjects: FC = () => {
                 ))}
               </ul>
               <div>
-                <CreateFilterItem onClickButton={openModal} />
+                <OpenCreateFilter onClickButton={openModal} />
                 {isOpenModal && <CreateSubjectModal closeModal={closeModal} />}
               </div>
             </>

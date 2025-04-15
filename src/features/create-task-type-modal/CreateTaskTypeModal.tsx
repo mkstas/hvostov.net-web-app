@@ -3,24 +3,24 @@
 import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { UiModal, UiForm, UiInput, UiButton } from '@/components';
-import { useCreateTaskTypeMutation, TaskTypeData } from '@/entities/task-types';
+import { useCreateTaskTypeMutation, TaskTypeCreateData } from '@/entities/task-types';
 
 interface Props {
   closeModal: () => void;
 }
 
 export const CreateTaskTypeModal: FC<Props> = ({ closeModal }) => {
-  const { control, formState, handleSubmit } = useForm<TaskTypeData>({ mode: 'onChange' });
-  const [createTaskType, { isSuccess: isSuccessCreate }] = useCreateTaskTypeMutation();
+  const { control, formState, handleSubmit } = useForm<TaskTypeCreateData>({ mode: 'onChange' });
+  const [createTaskType, { isSuccess }] = useCreateTaskTypeMutation();
 
   useEffect(() => {
-    if (isSuccessCreate) {
+    if (isSuccess) {
       closeModal();
     }
-  }, [isSuccessCreate, closeModal]);
+  }, [isSuccess, closeModal]);
 
   return (
-    <UiModal title='Добавление типа работы'>
+    <UiModal title='Добавление типа работы' overlayId='modalOverlay' closeButtonId='modalCloseButton'>
       <UiForm onSubmit={handleSubmit(formData => createTaskType(formData))}>
         <Controller
           control={control}

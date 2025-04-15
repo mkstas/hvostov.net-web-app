@@ -9,13 +9,13 @@ import { AuthData, useLoginUserMutation } from '@/entities/users';
 
 export const FormLoginUser: FC = () => {
   const { control, formState, handleSubmit } = useForm<AuthData>({ mode: 'onChange' });
-  const [loginUser, { isLoading: isRegisterLoading, isSuccess: isRegisterSuccess }] = useLoginUserMutation();
+  const [loginUser, { isLoading, isSuccess }] = useLoginUserMutation();
 
   useEffect(() => {
-    if (isRegisterSuccess) {
+    if (isSuccess) {
       redirect(ROUTES.DASHBOARD);
     }
-  }, [isRegisterSuccess]);
+  }, [isSuccess]);
 
   return (
     <UiForm onSubmit={handleSubmit(formData => loginUser(formData))}>
@@ -36,6 +36,7 @@ export const FormLoginUser: FC = () => {
             id='email'
             label='Электронная почта'
             placeholder='example@mail.ru'
+            variant='lg'
             error={formState.errors.email?.message}
             {...field}
           />
@@ -58,12 +59,15 @@ export const FormLoginUser: FC = () => {
             id='password'
             label='Пароль'
             placeholder='••••••••'
+            variant='lg'
             error={formState.errors.password?.message}
             {...field}
           />
         )}
       />
-      <UiButton disabled={isRegisterLoading}>Войти</UiButton>
+      <UiButton variant='lg' disabled={isLoading}>
+        Войти
+      </UiButton>
     </UiForm>
   );
 };

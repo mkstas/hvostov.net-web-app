@@ -2,22 +2,10 @@
 
 import { FC } from 'react';
 import { Task } from '@/entities/tasks';
-import { useFindSubjectsQuery } from '@/entities/subjects';
-import { useFindTaskTypesQuery } from '@/entities/task-types';
+import { useTaskListItem } from './useTaskListItem';
 
-export const TaskListItem: FC<Task> = ({ title, deadline, taskTypeId, subjectId }) => {
-  const { data: subjects } = useFindSubjectsQuery();
-  const { data: taskTypes } = useFindTaskTypesQuery();
-
-  deadline = new Date(deadline);
-
-  const getSubject = () => {
-    return subjects?.find(subject => subject.subjectId === subjectId)?.title;
-  };
-
-  const getTaskType = () => {
-    return taskTypes?.find(taskType => taskType.taskTypeId === taskTypeId)?.title;
-  };
+export const TaskListItem: FC<Task> = ({ title, deadline, subjectId, taskTypeId }) => {
+  const { convertDeadline, getSubject, getTaskType } = useTaskListItem(deadline, subjectId, taskTypeId);
 
   return (
     <a
@@ -30,7 +18,7 @@ export const TaskListItem: FC<Task> = ({ title, deadline, taskTypeId, subjectId 
         <span className='text-c-slate-600 text-sm'>{getTaskType()}</span>
       </div>
       <div className='flex justify-between'>
-        <time>{deadline.toLocaleString('ru', { year: 'numeric', month: 'numeric', day: 'numeric' })}</time>
+        <time>{convertDeadline()}</time>
       </div>
     </a>
   );
