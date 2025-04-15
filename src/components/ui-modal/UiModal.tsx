@@ -7,8 +7,11 @@ interface Props extends PropsWithChildren {
 
 export const UiModal: FC<Props> = ({ children, title }) => {
   return (
-    <div id='modalOverlay' className='bg-c-slate-600/20 fixed top-0 left-0 z-50 h-full w-full pt-[10%]'>
-      <div className='mx-auto max-w-lg rounded-3xl bg-white p-4'>
+    <div
+      id='modalOverlay'
+      className='bg-c-slate-600/20 fixed top-0 left-0 z-50 flex h-full w-full items-center justify-center overflow-y-auto py-20'
+    >
+      <div className='mx-auto w-full max-w-lg rounded-3xl bg-white p-4'>
         <div className='mb-4 flex items-center justify-between gap-8'>
           <h3 className='text-lg font-semibold'>{title}</h3>
           <button

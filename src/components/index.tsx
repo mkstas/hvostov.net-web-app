@@ -6,4 +6,7 @@ export * from './ui-input';
 export * from './ui-link';
 export * from './ui-logo';
 export * from './ui-modal';
+export * from './ui-select';
 export * from './ui-sheet';
+export * from './ui-skeleton';
+export * from './ui-text-area';
