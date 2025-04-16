@@ -8,14 +8,18 @@ import { UiButton, UiForm, UiInput } from '@/components';
 import { AuthData, useLoginUserMutation } from '@/entities/users';
 
 export const FormLoginUser: FC = () => {
-  const { control, formState, handleSubmit } = useForm<AuthData>({ mode: 'onChange' });
-  const [loginUser, { isLoading, isSuccess }] = useLoginUserMutation();
+  const { control, formState, handleSubmit, setError } = useForm<AuthData>({ mode: 'onChange' });
+  const [loginUser, { isLoading, isSuccess, isError }] = useLoginUserMutation();
 
   useEffect(() => {
     if (isSuccess) {
       redirect(ROUTES.DASHBOARD);
     }
-  }, [isSuccess]);
+    if (!isLoading && isError) {
+      setError('email', { message: 'Неверный логин или пароль' });
+      setError('password', { message: 'Неверный логин или пароль' });
+    }
+  }, [isSuccess, isError, isLoading, setError]);
 
   return (
     <UiForm onSubmit={handleSubmit(formData => loginUser(formData))}>
