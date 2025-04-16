@@ -1,17 +1,37 @@
 'use client';
 
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useOpenModal } from '@/shared/utils';
 import { UiDelimiter, UiSheet } from '@/components';
-import { useFindTaskTypesQuery } from '@/entities/task-types';
+import { TaskType, useFindTaskTypesQuery } from '@/entities/task-types';
 import { OpenCreateFilter } from '@/features/open-create-filter';
 import { SelectFilterItem, SelectFilterItemSkeleton } from '@/features/select-filter-item';
 import { ResetFilterItem } from '@/features/reset-filter-item';
 import { CreateTaskTypeModal } from '@/features/create-task-type-modal';
+import { UpdateTaskTypeModal } from '@/features/update-task-type-modal';
+import { OpenUpdateFilter } from '@/features/open-update-filter';
 
 export const TheFilterTaskTypes: FC = () => {
-  const { isOpenModal, openModal, closeModal } = useOpenModal('modalOverlay', 'modalCloseButton');
-  const { data: taskTypes, isLoading } = useFindTaskTypesQuery();
+  const { data: taskTypes, isLoading, isSuccess } = useFindTaskTypesQuery();
+
+  const [currentTaskType, setCurrentTaskType] = useState<TaskType>({ taskTypeId: 0, title: '' });
+
+  const {
+    isOpenModal: isOpenModalCreate,
+    openModal: openModalCreate,
+    closeModal: closeModalCreate,
+  } = useOpenModal('modalOverlay', 'modalCloseButton');
+
+  const {
+    isOpenModal: isOpenModalUpdate,
+    openModal: openModalUpdate,
+    closeModal: closeModalUpdate,
+  } = useOpenModal('modalOverlay', 'modalCloseButton');
+
+  const onOpenModalUpdate = (taskType: TaskType) => {
+    setCurrentTaskType(() => taskType);
+    openModalUpdate();
+  };
 
   return (
     <UiSheet>
@@ -22,19 +42,23 @@ export const TheFilterTaskTypes: FC = () => {
             Array(3)
               .fill(0)
               .map((_, index) => <SelectFilterItemSkeleton key={index} />)}
+          {!isLoading && isSuccess && (
+            <ul className='space-y-1'>
+              {taskTypes?.map(taskType => (
+                <li key={taskType.taskTypeId} className='flex space-x-2'>
+                  <SelectFilterItem filterName='taskType' title={taskType.title} />
+                  <OpenUpdateFilter onClickButton={() => onOpenModalUpdate(taskType)} />
+                </li>
+              ))}
+            </ul>
+          )}
           {!isLoading && (
             <>
-              <ul className='space-y-1'>
-                {taskTypes?.map(taskType => (
-                  <li key={taskType.taskTypeId}>
-                    <SelectFilterItem filterName='task-type' title={taskType.title} />
-                  </li>
-                ))}
-              </ul>
               <div>
-                <OpenCreateFilter onClickButton={openModal} />
-                {isOpenModal && <CreateTaskTypeModal closeModal={closeModal} />}
+                <OpenCreateFilter onClickButton={openModalCreate} />
+                {isOpenModalCreate && <CreateTaskTypeModal closeModal={closeModalCreate} />}
               </div>
+              {isOpenModalUpdate && <UpdateTaskTypeModal taskType={currentTaskType} closeModal={closeModalUpdate} />}
             </>
           )}
         </div>

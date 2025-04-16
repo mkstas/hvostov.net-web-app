@@ -1,7 +1,7 @@
-export interface TaskTypeCreateData {
+export interface TaskTypeFormData {
   title: string;
 }
 
-export interface TaskType extends TaskTypeCreateData {
+export interface TaskType extends TaskTypeFormData {
   taskTypeId: number;
 }

@@ -2,8 +2,8 @@
 
 import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { UiButton, UiForm, UiInput, UiModal } from '@/components';
 import { useFilterParams } from '@/shared/utils';
+import { UiButton, UiForm, UiInput, UiModal } from '@/components';
 import { Subject, SubjectFormData, useDeleteSubjectMutation, useUpdateSubjectMutation } from '@/entities/subjects';
 
 interface Props {
@@ -14,17 +14,17 @@ interface Props {
 export const UpdateSubjectModal: FC<Props> = ({ subject, closeModal }) => {
   const { control, formState, handleSubmit } = useForm<SubjectFormData>({ mode: 'onChange' });
   const { deleteFilterParam } = useFilterParams('subject');
-  const [updateSubject, { isSuccess: isSuccessCreated }] = useUpdateSubjectMutation();
+  const [updateSubject, { isSuccess: isSuccessUpdated }] = useUpdateSubjectMutation();
   const [deleteSubject, { isSuccess: isSuccessDeleted }] = useDeleteSubjectMutation();
 
   useEffect(() => {
     if (isSuccessDeleted) {
       deleteFilterParam(subject.title);
     }
-    if (isSuccessCreated || isSuccessDeleted) {
+    if (isSuccessUpdated || isSuccessDeleted) {
       closeModal();
     }
-  }, [isSuccessCreated, isSuccessDeleted, subject.title, deleteFilterParam, closeModal]);
+  }, [isSuccessUpdated, isSuccessDeleted, subject.title, deleteFilterParam, closeModal]);
 
   return (
     <UiModal title='Редактирование учебной дисциплины' overlayId='modalOverlay' closeButtonId='modalCloseButton'>
