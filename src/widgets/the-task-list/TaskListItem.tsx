@@ -10,7 +10,7 @@ export const TaskListItem: FC<Task> = ({ title, deadline, subjectId, taskTypeId 
   return (
     <a
       href='#'
-      className='bg-c-slate-200 border-c-slate-200 hover:bg-c-slate-300 outline-c-slate-600 block cursor-pointer space-y-1 rounded-2xl border p-3 transition-colors'
+      className='bg-c-slate-200 border-c-slate-200 hover:bg-c-slate-300 outline-c-slate-600 transition-color grid h-full cursor-pointer grid-rows-[1fr_auto] items-start space-y-1 rounded-2xl border p-3'
     >
       <div className='grid'>
         <span className='font-medium'>{title}</span>

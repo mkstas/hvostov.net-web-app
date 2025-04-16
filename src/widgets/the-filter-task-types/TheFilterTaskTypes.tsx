@@ -63,7 +63,7 @@ export const TheFilterTaskTypes: FC = () => {
           )}
         </div>
         <UiDelimiter />
-        <ResetFilterItem filterName='task-type' />
+        <ResetFilterItem filterName='taskType' />
       </section>
     </UiSheet>
   );

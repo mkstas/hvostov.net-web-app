@@ -18,10 +18,8 @@ export const UpdateSubjectModal: FC<Props> = ({ subject, closeModal }) => {
   const [deleteSubject, { isSuccess: isSuccessDeleted }] = useDeleteSubjectMutation();
 
   useEffect(() => {
-    if (isSuccessDeleted) {
-      deleteFilterParam(subject.title);
-    }
     if (isSuccessUpdated || isSuccessDeleted) {
+      deleteFilterParam(subject.title);
       closeModal();
     }
   }, [isSuccessUpdated, isSuccessDeleted, subject.title, deleteFilterParam, closeModal]);

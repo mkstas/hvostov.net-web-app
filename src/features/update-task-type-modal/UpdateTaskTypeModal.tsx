@@ -23,10 +23,8 @@ export const UpdateTaskTypeModal: FC<Props> = ({ taskType, closeModal }) => {
   const [deleteTaskType, { isSuccess: isSuccessDeleted }] = useDeleteTaskTypeMutation();
 
   useEffect(() => {
-    if (isSuccessDeleted) {
-      deleteFilterParam(taskType.title);
-    }
     if (isSuccessUpdated || isSuccessDeleted) {
+      deleteFilterParam(taskType.title);
       closeModal();
     }
   }, [isSuccessUpdated, isSuccessDeleted, taskType.title, deleteFilterParam, closeModal]);
