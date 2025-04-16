@@ -3,14 +3,14 @@
 import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { UiModal, UiForm, UiInput, UiButton } from '@/components';
-import { SubjectCreateData, useCreateSubjectMutation } from '@/entities/subjects';
+import { SubjectFormData, useCreateSubjectMutation } from '@/entities/subjects';
 
 interface Props {
   closeModal: () => void;
 }
 
 export const CreateSubjectModal: FC<Props> = ({ closeModal }) => {
-  const { control, formState, handleSubmit } = useForm<SubjectCreateData>({ mode: 'onChange' });
+  const { control, formState, handleSubmit } = useForm<SubjectFormData>({ mode: 'onChange' });
   const [createSubject, { isSuccess }] = useCreateSubjectMutation();
 
   useEffect(() => {
