@@ -1,4 +1,4 @@
-export interface TaskCreateData {
+export interface TaskFormData {
   subjectId: number;
   taskTypeId: number;
   title: string;
@@ -6,6 +6,6 @@ export interface TaskCreateData {
   deadline: string;
 }
 
-export interface Task extends TaskCreateData {
+export interface Task extends TaskFormData {
   taskId: number;
 }

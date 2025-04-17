@@ -3,7 +3,7 @@
 import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { UiButton, UiForm, UiInput, UiModal, UiSelect, UiTextArea } from '@/components';
-import { TaskCreateData, useCreateTaskMutation } from '@/entities/tasks';
+import { TaskFormData, useCreateTaskMutation } from '@/entities/tasks';
 import { useCreateTaskModal } from './useCreateTaskModal';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 
 export const CreateTaskModal: FC<Props> = ({ closeModal }) => {
   const { subjects, taskTypes, convertSubjectsToOptions, convertTaskTypesToOptions } = useCreateTaskModal();
-  const { control, formState, handleSubmit } = useForm<TaskCreateData>({ mode: 'onChange' });
+  const { control, formState, handleSubmit } = useForm<TaskFormData>({ mode: 'onChange' });
   const [createTask, { isSuccess }] = useCreateTaskMutation();
 
   useEffect(() => {
