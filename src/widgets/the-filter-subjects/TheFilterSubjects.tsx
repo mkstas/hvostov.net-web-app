@@ -4,17 +4,16 @@ import { FC, useState } from 'react';
 import { useOpenModal } from '@/shared/utils';
 import { UiDelimiter, UiSheet } from '@/components';
 import { Subject, useFindSubjectsQuery } from '@/entities/subjects';
-import { OpenCreateFilter } from '@/features/open-create-filter';
 import { SelectFilterItem, SelectFilterItemSkeleton } from '@/features/select-filter-item';
-import { ResetFilterItem } from '@/features/reset-filter-item';
-import { CreateSubjectModal } from '@/features/create-subject-modal';
 import { OpenUpdateFilter } from '@/features/open-update-filter';
-import { UpdateSubjectModal } from '@/features/update-subject-modal';
+import { OpenCreateFilter } from '@/features/open-create-filter';
+import { ResetFilterItem } from '@/features/reset-filter-item';
+import { CreateSubjectModal } from './CreateSubjectModal';
+import { UpdateSubjectModal } from './UpdateSubjectModal';
 
 export const TheFilterSubjects: FC = () => {
   const { data: subjects, isLoading, isSuccess } = useFindSubjectsQuery();
-
-  const [currentSubject, setCurrentSubject] = useState<Subject>({ subjectId: 0, title: '' });
+  const [currentSubject, setCurrentSubject] = useState<Subject>();
 
   const {
     isOpenModal: isOpenModalCreate,
@@ -58,7 +57,7 @@ export const TheFilterSubjects: FC = () => {
                 <OpenCreateFilter onClickButton={openModalCreate} />
                 {isOpenModalCreate && <CreateSubjectModal closeModal={closeModalCreate} />}
               </div>
-              {isOpenModalUpdate && <UpdateSubjectModal subject={currentSubject} closeModal={closeModalUpdate} />}
+              {isOpenModalUpdate && <UpdateSubjectModal closeModal={closeModalUpdate} subject={currentSubject!} />}
             </>
           )}
         </div>

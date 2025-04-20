@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AuthProvider } from '@/shared/providers';
 import { ROUTES } from '@/shared/routes';
 import { UiDelimiter, UiLink, UiLogo, UiSheet } from '@/components';
-import { FormRegisterUser } from '@/features/form-register-user';
+import { UserRegisterForm } from '@/features/user-register-form';
 
 export const metadata: Metadata = {
   title: 'АнтиХвост | Регистрация',
@@ -16,7 +16,7 @@ export default function Register() {
         <UiSheet>
           <div className='space-y-4'>
             <h1 className='text-center text-xl font-semibold'>Регистрация</h1>
-            <FormRegisterUser />
+            <UserRegisterForm />
             <UiDelimiter className='mx-auto w-4/5' />
             <div className='text-center'>
               <span>Есть аккаунт? </span>

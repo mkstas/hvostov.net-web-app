@@ -4,17 +4,16 @@ import { FC, useState } from 'react';
 import { useOpenModal } from '@/shared/utils';
 import { UiDelimiter, UiSheet } from '@/components';
 import { TaskType, useFindTaskTypesQuery } from '@/entities/task-types';
-import { OpenCreateFilter } from '@/features/open-create-filter';
 import { SelectFilterItem, SelectFilterItemSkeleton } from '@/features/select-filter-item';
-import { ResetFilterItem } from '@/features/reset-filter-item';
-import { CreateTaskTypeModal } from '@/features/create-task-type-modal';
-import { UpdateTaskTypeModal } from '@/features/update-task-type-modal';
 import { OpenUpdateFilter } from '@/features/open-update-filter';
+import { OpenCreateFilter } from '@/features/open-create-filter';
+import { ResetFilterItem } from '@/features/reset-filter-item';
+import { CreatTaskTypeModal } from './CreateTaskTypeModal';
+import { UpdateTaskTypeModal } from './UpdateTaskTypeModal';
 
 export const TheFilterTaskTypes: FC = () => {
   const { data: taskTypes, isLoading, isSuccess } = useFindTaskTypesQuery();
-
-  const [currentTaskType, setCurrentTaskType] = useState<TaskType>({ taskTypeId: 0, title: '' });
+  const [currentTaskType, setCurrentTaskType] = useState<TaskType>();
 
   const {
     isOpenModal: isOpenModalCreate,
@@ -56,9 +55,9 @@ export const TheFilterTaskTypes: FC = () => {
             <>
               <div>
                 <OpenCreateFilter onClickButton={openModalCreate} />
-                {isOpenModalCreate && <CreateTaskTypeModal closeModal={closeModalCreate} />}
+                {isOpenModalCreate && <CreatTaskTypeModal closeModal={closeModalCreate} />}
               </div>
-              {isOpenModalUpdate && <UpdateTaskTypeModal taskType={currentTaskType} closeModal={closeModalUpdate} />}
+              {isOpenModalUpdate && <UpdateTaskTypeModal taskType={currentTaskType!} closeModal={closeModalUpdate} />}
             </>
           )}
         </div>

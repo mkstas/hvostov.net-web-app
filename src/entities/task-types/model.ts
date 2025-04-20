@@ -1,7 +1,5 @@
-export interface TaskTypeFormData {
-  title: string;
-}
-
-export interface TaskType extends TaskTypeFormData {
+export interface TaskType {
   taskTypeId: number;
+  title: string;
+  isHidden: boolean;
 }

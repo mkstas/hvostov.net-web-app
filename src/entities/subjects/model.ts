@@ -1,7 +1,5 @@
-export interface SubjectFormData {
-  title: string;
-}
-
-export interface Subject extends SubjectFormData {
+export interface Subject {
   subjectId: number;
+  title: string;
+  isHidden: boolean;
 }

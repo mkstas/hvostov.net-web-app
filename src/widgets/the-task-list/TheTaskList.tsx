@@ -3,22 +3,14 @@
 import { FC, useState } from 'react';
 import { useOpenModal } from '@/shared/utils';
 import { Task, useFindTasksQuery } from '@/entities/tasks';
-import { TaskListItem } from './TaskListItem';
-import { TaskListItemSkeleton } from './TaskListItemSkeleton';
-import { TaskListItemModal } from './TaskListItemModal';
+import { TaskListItem } from './task-list-item/TaskListItem';
+import { TaskListItemSkeleton } from './task-list-item/TaskListItemSkeleton';
+import { TaskListItemModal } from './task-list-item/TaskListItemModal';
 
 export const TheTaskList: FC = () => {
   const { data: tasks, isLoading, isSuccess } = useFindTasksQuery();
-  const { isOpenModal, openModal } = useOpenModal('modalOverlay', 'modalCloseButton');
-
-  const [currentTask, setCurrentTask] = useState<Task>({
-    taskId: 0,
-    subjectId: 0,
-    taskTypeId: 0,
-    title: '',
-    description: '',
-    deadline: '',
-  });
+  const { isOpenModal, openModal, closeModal } = useOpenModal('modalOverlay', 'modalCloseButton');
+  const [currentTask, setCurrentTask] = useState<Task>();
 
   const onClickTask = (task: Task) => {
     setCurrentTask(task);
@@ -31,7 +23,11 @@ export const TheTaskList: FC = () => {
         {isLoading &&
           Array(6)
             .fill(0)
-            .map((_, index) => <TaskListItemSkeleton key={index} />)}
+            .map((_, index) => (
+              <li key={index}>
+                <TaskListItemSkeleton />
+              </li>
+            ))}
         {!isLoading &&
           isSuccess &&
           tasks.map(task => (
@@ -40,7 +36,7 @@ export const TheTaskList: FC = () => {
             </li>
           ))}
       </ul>
-      {isOpenModal && <TaskListItemModal task={currentTask} />}
+      {isOpenModal && <TaskListItemModal taskId={currentTask!.taskId} onCloseModal={closeModal} />}
     </div>
   );
 };

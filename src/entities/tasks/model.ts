@@ -1,11 +1,10 @@
-export interface TaskFormData {
+export interface Task {
+  taskId: number;
   subjectId: number;
   taskTypeId: number;
   title: string;
   description: string;
   deadline: string;
-}
-
-export interface Task extends TaskFormData {
-  taskId: number;
+  isDone: boolean;
+  isHidden: boolean;
 }

@@ -3,7 +3,7 @@
 import { FC } from 'react';
 import { useOpenModal } from '@/shared/utils';
 import { OpenCreateTask } from '@/features/open-create-task';
-import { CreateTaskModal } from '@/features/create-task-modal';
+import { CreateTaskModal } from './CreateTaskModal';
 
 export const TheTaskActions: FC = () => {
   const { isOpenModal, openModal, closeModal } = useOpenModal('modalOverlay', 'modalCloseButton');

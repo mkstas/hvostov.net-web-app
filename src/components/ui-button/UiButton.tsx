@@ -4,14 +4,14 @@ import { cn } from '@/shared/utils';
 interface Props extends PropsWithChildren {
   className?: string;
   variant?: 'md' | 'lg';
-  color?: 'blue' | 'red';
+  color?: 'blue' | 'red' | 'green';
   disabled?: boolean;
   type?: 'submit' | 'reset' | 'button';
   onClick?: () => void;
 }
 
 export const UiButton: FC<Props> = props => {
-  const { children, className, variant = 'md', color = 'blue', disabled = false, type = 'submit', onClick } = props;
+  const { children, className, variant = 'md', color = 'blue', disabled = false, type, onClick } = props;
 
   return (
     <button
@@ -25,8 +25,10 @@ export const UiButton: FC<Props> = props => {
           'px-4 py-3': variant === 'lg',
           'bg-c-blue-500 outline-c-blue-500 hover:bg-c-blue-600': !disabled && color === 'blue',
           'bg-c-blue-400': disabled && color === 'blue',
-          'bg-c-red-500 outline-c-red-500 hover:bg-c-red-500': !disabled && color === 'red',
-          'bg-c-red-500': disabled && color === 'red',
+          'bg-c-red-500 outline-c-red-500 hover:bg-c-red-600': !disabled && color === 'red',
+          'bg-c-red-400': disabled && color === 'red',
+          'bg-c-green-500 outline-c-green-500 hover:bg-c-green-600': !disabled && color === 'green',
+          'bg-c-green-400': disabled && color === 'green',
           'cursor-pointer': !disabled,
           'cursor-not-allowed': disabled,
         },

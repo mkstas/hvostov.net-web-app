@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AuthProvider } from '@/shared/providers';
 import { ROUTES } from '@/shared/routes';
 import { UiDelimiter, UiLink, UiLogo, UiSheet } from '@/components';
-import { FormLoginUser } from '@/features/form-login-user';
+import { UserLoginForm } from '@/features/user-login-form';
 
 export const metadata: Metadata = {
   title: 'АнтиХвост | Вход в аккаунт',
@@ -16,7 +16,7 @@ export default function Index() {
         <UiSheet>
           <div className='space-y-4'>
             <h1 className='text-center text-xl font-semibold'>Вход в аккаунт</h1>
-            <FormLoginUser />
+            <UserLoginForm />
             <UiDelimiter className='mx-auto w-4/5' />
             <div className='text-center'>
               <span>Нет аккаунта? </span>

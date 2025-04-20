@@ -1,5 +1,5 @@
 import { api } from '@/shared/stores';
-import { TaskType, TaskTypeFormData } from './model';
+import { TaskType } from './model';
 
 export const taskTypeApi = api.injectEndpoints({
   endpoints: builder => ({
@@ -7,11 +7,11 @@ export const taskTypeApi = api.injectEndpoints({
       query: () => '/task-types',
       providesTags: ['taskTypes'],
     }),
-    createTaskType: builder.mutation<TaskType, TaskTypeFormData>({
+    createTaskType: builder.mutation<TaskType, Partial<TaskType>>({
       query: body => ({ url: '/task-types', method: 'POST', body }),
       invalidatesTags: ['taskTypes'],
     }),
-    updateTaskType: builder.mutation<TaskType, TaskType>({
+    updateTaskType: builder.mutation<TaskType, Partial<TaskType>>({
       query: ({ taskTypeId, ...body }) => ({ url: `/task-types/${taskTypeId}`, method: 'PATCH', body }),
       invalidatesTags: ['taskTypes'],
     }),
