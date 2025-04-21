@@ -3,8 +3,8 @@ import { Task } from './model';
 
 export const taskApi = api.injectEndpoints({
   endpoints: builder => ({
-    findTasks: builder.query<Task[], void>({
-      query: () => '/tasks',
+    findTasks: builder.query<Task[], string>({
+      query: query => ({ url: `/tasks?${query}` }),
       providesTags: ['tasks'],
     }),
     findTask: builder.query<Task, number>({

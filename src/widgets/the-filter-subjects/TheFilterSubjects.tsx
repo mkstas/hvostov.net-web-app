@@ -45,7 +45,10 @@ export const TheFilterSubjects: FC = () => {
             <ul className='space-y-1'>
               {subjects?.map(subject => (
                 <li key={subject.subjectId} className='flex space-x-2'>
-                  <SelectFilterItem filterName='subject' title={subject.title} />
+                  <SelectFilterItem
+                    filterName='subjectId'
+                    filterValue={{ id: subject.subjectId, title: subject.title }}
+                  />
                   <OpenUpdateFilter onClickButton={() => onOpenModalUpdate(subject)} />
                 </li>
               ))}
@@ -62,7 +65,7 @@ export const TheFilterSubjects: FC = () => {
           )}
         </div>
         <UiDelimiter />
-        <ResetFilterItem filterName='subject' />
+        <ResetFilterItem filterName='subjectId' />
       </section>
     </UiSheet>
   );

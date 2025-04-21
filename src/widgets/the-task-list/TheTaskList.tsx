@@ -6,9 +6,11 @@ import { Task, useFindTasksQuery } from '@/entities/tasks';
 import { TaskListItem } from './task-list-item/TaskListItem';
 import { TaskListItemSkeleton } from './task-list-item/TaskListItemSkeleton';
 import { TaskListItemModal } from './task-list-item/TaskListItemModal';
+import { useSearchParams } from 'next/navigation';
 
 export const TheTaskList: FC = () => {
-  const { data: tasks, isLoading, isSuccess } = useFindTasksQuery();
+  const searchParams = useSearchParams();
+  const { data: tasks, isLoading, isSuccess } = useFindTasksQuery(searchParams.toString());
   const { isOpenModal, openModal, closeModal } = useOpenModal('modalOverlay', 'modalCloseButton');
   const [currentTask, setCurrentTask] = useState<Task>();
 

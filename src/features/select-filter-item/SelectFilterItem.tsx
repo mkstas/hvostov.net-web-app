@@ -5,12 +5,15 @@ import { cn } from '@/shared/utils';
 import { useSelectFilter } from './useSelectFilter';
 
 interface Props {
-  title: string;
+  filterValue: {
+    id: number;
+    title: string;
+  };
   filterName: string;
 }
 
-export const SelectFilterItem: FC<Props> = ({ title, filterName }) => {
-  const { isSelected, onClickButton } = useSelectFilter(filterName, title);
+export const SelectFilterItem: FC<Props> = ({ filterName, filterValue }) => {
+  const { isSelected, onClickButton } = useSelectFilter(filterName, filterValue.id.toString());
 
   return (
     <button
@@ -20,7 +23,7 @@ export const SelectFilterItem: FC<Props> = ({ title, filterName }) => {
         'text-c-blue-600 bg-c-sky-400 hover:bg-c-sky-500': isSelected,
       })}
     >
-      {title}
+      {filterValue.title}
     </button>
   );
 };

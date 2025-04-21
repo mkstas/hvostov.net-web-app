@@ -45,7 +45,10 @@ export const TheFilterTaskTypes: FC = () => {
             <ul className='space-y-1'>
               {taskTypes?.map(taskType => (
                 <li key={taskType.taskTypeId} className='flex space-x-2'>
-                  <SelectFilterItem filterName='taskType' title={taskType.title} />
+                  <SelectFilterItem
+                    filterName='taskTypeId'
+                    filterValue={{ id: taskType.taskTypeId, title: taskType.title }}
+                  />
                   <OpenUpdateFilter onClickButton={() => onOpenModalUpdate(taskType)} />
                 </li>
               ))}
@@ -62,7 +65,7 @@ export const TheFilterTaskTypes: FC = () => {
           )}
         </div>
         <UiDelimiter />
-        <ResetFilterItem filterName='taskType' />
+        <ResetFilterItem filterName='taskTypeId' />
       </section>
     </UiSheet>
   );
