@@ -20,7 +20,7 @@ export const TheTaskList: FC = () => {
 
   return (
     <div>
-      <ul className='grid grid-cols-3 gap-4'>
+      <ul className='grid grid-cols-2 gap-4 md:grid-cols-3'>
         {!isLoading &&
           isSuccess &&
           tasks.map(task => (

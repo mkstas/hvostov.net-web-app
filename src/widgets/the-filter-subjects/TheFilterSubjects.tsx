@@ -33,7 +33,7 @@ export const TheFilterSubjects: FC = () => {
   };
 
   return (
-    <UiSheet>
+    <UiSheet className='max-lg:rounded-b-none'>
       <section className='space-y-2'>
         <h2 className='text-lg font-medium'>Учебные дисциплины</h2>
         <div className='space-y-1'>

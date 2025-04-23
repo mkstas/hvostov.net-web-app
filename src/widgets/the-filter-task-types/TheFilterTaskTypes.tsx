@@ -33,7 +33,7 @@ export const TheFilterTaskTypes: FC = () => {
   };
 
   return (
-    <UiSheet>
+    <UiSheet className='max-lg:rounded-none'>
       <section className='space-y-2'>
         <h2 className='text-lg font-medium'>Типы работ</h2>
         <div className='space-y-1'>
