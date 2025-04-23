@@ -11,7 +11,7 @@ import { ResetFilterItem } from '@/features/reset-filter-item';
 import { CreateSubjectModal } from './CreateSubjectModal';
 import { UpdateSubjectModal } from './UpdateSubjectModal';
 
-export const TheFilterSubjects: FC = () => {
+export const FilterSubjects: FC = () => {
   const { data: subjects, isLoading, isSuccess } = useFindSubjectsQuery();
   const [currentSubject, setCurrentSubject] = useState<Subject>();
 

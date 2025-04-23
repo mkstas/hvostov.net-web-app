@@ -5,7 +5,7 @@ import { TheHeaderMenu } from './TheHeaderMenu';
 export const TheHeader: FC = () => {
   return (
     <UiSheet className='rounded-t-none'>
-      <header className='relative flex items-center justify-between'>
+      <header className='relative z-50 flex items-center justify-between'>
         <UiLogo />
         <TheHeaderMenu />
       </header>
