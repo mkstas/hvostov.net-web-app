@@ -25,35 +25,44 @@ export const UpdateTaskForm: FC<Props> = ({ closeEdit, task }) => {
 
   return (
     <UiForm onSubmit={handleSubmit(formData => updateTask({ taskId: task.taskId, ...formData }))}>
-      <Controller
-        control={control}
-        name='title'
-        defaultValue={task.title}
-        rules={{
-          required: 'Это поле обязательно',
-        }}
-        render={({ field }) => (
-          <UiInput
-            type='text'
-            id='title'
-            placeholder='Название...'
-            error={formState.errors.title?.message}
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name='deadline'
-        defaultValue={date}
-        rules={{
-          required: 'Это поле обязательно',
-        }}
-        render={({ field }) => (
-          <UiInput type='date' id='deadline' error={formState.errors.deadline?.message} {...field} />
-        )}
-      />
-      <div className='grid grid-cols-2 space-x-4'>
+      <div className='grid grid-cols-2 items-end space-x-4'>
+        <Controller
+          control={control}
+          name='title'
+          defaultValue={task.title}
+          rules={{
+            required: 'Это поле обязательно',
+          }}
+          render={({ field }) => (
+            <UiInput
+              type='text'
+              id='title'
+              label='Название работы*'
+              placeholder='Название...'
+              error={formState.errors.title?.message}
+              {...field}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name='deadline'
+          defaultValue={date}
+          rules={{
+            required: 'Это поле обязательно',
+          }}
+          render={({ field }) => (
+            <UiInput
+              type='date'
+              id='deadline'
+              label='Дата сдачи работы*'
+              error={formState.errors.deadline?.message}
+              {...field}
+            />
+          )}
+        />
+      </div>
+      <div className='grid grid-cols-2 items-end space-x-4'>
         <Controller
           control={control}
           name='subjectId'
@@ -61,6 +70,7 @@ export const UpdateTaskForm: FC<Props> = ({ closeEdit, task }) => {
           render={({ field }) => (
             <UiSelect
               id='subjectId'
+              label='Учебная дисциплина'
               error={formState.errors.subjectId?.message}
               options={convertSubjectsToOptions()}
               {...field}
@@ -74,6 +84,7 @@ export const UpdateTaskForm: FC<Props> = ({ closeEdit, task }) => {
           render={({ field }) => (
             <UiSelect
               id='taskTypeId'
+              label='Тип работы'
               error={formState.errors.taskTypeId?.message}
               options={convertTaskTypesToOptions()}
               {...field}
@@ -89,6 +100,7 @@ export const UpdateTaskForm: FC<Props> = ({ closeEdit, task }) => {
           <UiTextArea
             id='description'
             rows={4}
+            label='Описание работы'
             placeholder='Описание...'
             error={formState.errors.description?.message}
             {...field}

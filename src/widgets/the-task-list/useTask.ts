@@ -3,7 +3,7 @@
 import { useFindSubjectsQuery } from '@/entities/subjects';
 import { useFindTaskTypesQuery } from '@/entities/task-types';
 
-export const useTaskListItem = (
+export const useTask = (
   deadline: string | undefined,
   subjectId: number | undefined,
   taskTypeId: number | undefined,

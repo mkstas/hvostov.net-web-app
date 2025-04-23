@@ -4,7 +4,7 @@ import { StoreProvider } from '@/shared/providers';
 import '@/shared/styles.css';
 
 const onest = Onest({
-  subsets: ['cyrillic', 'latin'],
+  subsets: ['cyrillic-ext', 'latin-ext'],
 });
 
 export default function IndexLayout({ children }: PropsWithChildren) {
