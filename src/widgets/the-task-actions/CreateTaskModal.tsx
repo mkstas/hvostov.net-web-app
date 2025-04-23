@@ -8,7 +8,8 @@ interface Props {
 
 export const CreateTaskModal: FC<Props> = ({ closeModal }) => {
   return (
-    <UiModal title='Добавление работы' overlayId='modalOverlay' closeButtonId='modalCloseButton'>
+    <UiModal onClickClose={closeModal} className='space-y-4'>
+      <h2 className='text-xl font-semibold'>Создание работы</h2>
       <CreateTaskForm closeModal={closeModal} />
     </UiModal>
   );

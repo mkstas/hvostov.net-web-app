@@ -10,7 +10,8 @@ interface Props {
 
 export const UpdateSubjectModal: FC<Props> = ({ closeModal, subject }) => {
   return (
-    <UiModal title='Редактирование учебной дисциплины' overlayId='modalOverlay' closeButtonId='modalCloseButton'>
+    <UiModal onClickClose={closeModal} className='space-y-4'>
+      <h2 className='text-lg font-semibold'>Редактирование учебной дисциплины</h2>
       <UpdateSubjectForm closeModal={closeModal} subject={subject} />
     </UiModal>
   );

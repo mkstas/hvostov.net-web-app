@@ -15,7 +15,12 @@ export const subtaskApi = api.injectEndpoints({
       query: ({ subtaskId, ...body }) => ({ url: `/subtasks/${subtaskId}`, method: 'PATCH', body }),
       invalidatesTags: ['subtasks'],
     }),
+    deleteSubtask: builder.mutation<Subtask, number>({
+      query: subtaskId => ({ url: `/subtasks/${subtaskId}`, method: 'DELETE' }),
+      invalidatesTags: ['subtasks'],
+    }),
   }),
 });
 
-export const { useFindSubtasksQuery, useCreateSubtaskMutation, useUpdateSubtaskMutation } = subtaskApi;
+export const { useFindSubtasksQuery, useCreateSubtaskMutation, useUpdateSubtaskMutation, useDeleteSubtaskMutation } =
+  subtaskApi;

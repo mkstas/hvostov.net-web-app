@@ -19,7 +19,7 @@ export const CreateSubtaskForm: FC<Props> = ({ taskId }) => {
 
   return (
     <UiForm onSubmit={handleSubmit(formData => onSubmitForm(formData))}>
-      <div className='grid grid-cols-[1fr_auto] items-end space-x-4'>
+      <div className='grid grid-cols-[1fr_auto] items-start space-x-4'>
         <Controller
           control={control}
           name='description'
@@ -31,7 +31,6 @@ export const CreateSubtaskForm: FC<Props> = ({ taskId }) => {
             <UiInput
               type='text'
               id='description'
-              label='Содержание подзадачи'
               placeholder='Подзадача'
               error={formState.errors.description?.message}
               {...field}

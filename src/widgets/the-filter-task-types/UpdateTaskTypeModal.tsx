@@ -10,7 +10,8 @@ interface Props {
 
 export const UpdateTaskTypeModal: FC<Props> = ({ closeModal, taskType }) => {
   return (
-    <UiModal title='Редактирование учебной дисциплины' overlayId='modalOverlay' closeButtonId='modalCloseButton'>
+    <UiModal onClickClose={closeModal} className='space-y-4'>
+      <h2 className='text-lg font-semibold'>Редактирование типа работы</h2>
       <UpdateTaskTypeForm closeModal={closeModal} taskType={taskType} />
     </UiModal>
   );

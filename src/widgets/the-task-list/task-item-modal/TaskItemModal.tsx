@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { cn } from '@/shared/utils';
-import { UiDelimiter, UiModal } from '@/components';
+import { UiButton, UiDelimiter, UiModal } from '@/components';
 import { UpdateTaskForm } from '@/features/update-task-form';
 import { TaskItemInfo } from './TaskItemInfo';
 import { useFindTaskQuery } from '@/entities/tasks';
@@ -23,6 +23,11 @@ export const TaskItemModal: FC<Props> = ({ taskId, onCloseModal }) => {
       {isLoading && <TaskItemInfoSkeleton />}
       <UiDelimiter className='my-4' />
       <SubtaskLIst taskId={taskId} />
+      <UiDelimiter className='my-4' />
+      <div className='flex justify-end space-x-4'>
+        <UiButton color='green'>Выполнить</UiButton>
+        <UiButton color='red'>Удалить</UiButton>
+      </div>
     </UiModal>
   );
 };

@@ -29,7 +29,7 @@ export const TheTaskList: FC = () => {
             </li>
           ))}
         {isLoading &&
-          Array(6)
+          Array(3)
             .fill(0)
             .map((_, index) => (
               <li key={index}>

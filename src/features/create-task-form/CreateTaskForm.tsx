@@ -41,21 +41,6 @@ export const CreateTaskForm: FC<Props> = ({ closeModal }) => {
       />
       <Controller
         control={control}
-        name='description'
-        defaultValue=''
-        render={({ field }) => (
-          <UiTextArea
-            id='description'
-            label='Описание работы'
-            rows={4}
-            placeholder='Описание...'
-            error={formState.errors.description?.message}
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        control={control}
         name='deadline'
         defaultValue=''
         rules={{
@@ -95,6 +80,21 @@ export const CreateTaskForm: FC<Props> = ({ closeModal }) => {
             label='Тип работы'
             error={formState.errors.taskTypeId?.message}
             options={convertTaskTypesToOptions()}
+            {...field}
+          />
+        )}
+      />
+      <Controller
+        control={control}
+        name='description'
+        defaultValue=''
+        render={({ field }) => (
+          <UiTextArea
+            id='description'
+            label='Описание работы'
+            rows={4}
+            placeholder='Описание...'
+            error={formState.errors.description?.message}
             {...field}
           />
         )}

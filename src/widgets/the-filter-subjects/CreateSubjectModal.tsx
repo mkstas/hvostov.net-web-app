@@ -8,7 +8,8 @@ interface Props {
 
 export const CreateSubjectModal: FC<Props> = ({ closeModal }) => {
   return (
-    <UiModal title='Добавление учебной дисциплины' overlayId='modalOverlay' closeButtonId='modalCloseButton'>
+    <UiModal onClickClose={closeModal} className='space-y-4'>
+      <h2 className='text-lg font-semibold'>Добавление учебной дисциплины</h2>
       <CreateSubjectForm closeModal={closeModal} />
     </UiModal>
   );
