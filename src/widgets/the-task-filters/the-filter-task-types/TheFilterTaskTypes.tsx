@@ -1,12 +1,11 @@
 'use client';
 
 import { FC, useState } from 'react';
+import { EllipsisVerticalIcon, PlusIcon } from '@heroicons/react/24/solid';
 import { useOpenModal } from '@/shared/utils';
 import { UiDelimiter, UiSheet } from '@/components';
 import { TaskType, useFindTaskTypesQuery } from '@/entities/task-types';
 import { SelectFilterItem, SelectFilterItemSkeleton } from '@/features/select-filter-item';
-import { OpenUpdateFilter } from '@/features/open-update-filter';
-import { OpenCreateFilter } from '@/features/open-create-filter';
 import { ResetFilterItem } from '@/features/reset-filter-item';
 import { CreatTaskTypeModal } from './CreateTaskTypeModal';
 import { UpdateTaskTypeModal } from './UpdateTaskTypeModal';
@@ -44,12 +43,17 @@ export const TheFilterTaskTypes: FC = () => {
           {!isLoading && isSuccess && (
             <ul className='space-y-1'>
               {taskTypes?.map(taskType => (
-                <li key={taskType.taskTypeId} className='flex space-x-2'>
+                <li key={taskType.taskTypeId} className='flex gap-x-2'>
                   <SelectFilterItem
                     filterName='taskTypeId'
                     filterValue={{ id: taskType.taskTypeId, title: taskType.title }}
                   />
-                  <OpenUpdateFilter onClickButton={() => onOpenModalUpdate(taskType)} />
+                  <button
+                    onClick={() => onOpenModalUpdate(taskType)}
+                    className='hover:bg-c-slate-300 outline-c-slate-600 cursor-pointer rounded-xl p-1 transition-colors'
+                  >
+                    <EllipsisVerticalIcon className='size-5' />
+                  </button>
                 </li>
               ))}
             </ul>
@@ -57,7 +61,12 @@ export const TheFilterTaskTypes: FC = () => {
           {!isLoading && (
             <>
               <div>
-                <OpenCreateFilter onClickButton={openModalCreate} />
+                <button
+                  onClick={openModalCreate}
+                  className='bg-c-slate-200 hover:bg-c-slate-300 outline-c-slate-600 cursor-pointer rounded-xl p-2 transition-colors'
+                >
+                  <PlusIcon className='size-4' />
+                </button>
                 {isOpenModalCreate && <CreatTaskTypeModal closeModal={closeModalCreate} />}
               </div>
               {isOpenModalUpdate && <UpdateTaskTypeModal taskType={currentTaskType!} closeModal={closeModalUpdate} />}

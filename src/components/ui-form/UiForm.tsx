@@ -8,7 +8,7 @@ interface Props extends PropsWithChildren {
 
 export const UiForm: FC<Props> = ({ children, className, onSubmit }) => {
   return (
-    <form onSubmit={onSubmit} className={cn('grid space-y-4', className)}>
+    <form onSubmit={onSubmit} className={cn('grid gap-y-4', className)}>
       {children}
     </form>
   );

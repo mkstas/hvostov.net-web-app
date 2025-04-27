@@ -11,7 +11,7 @@ interface Props {
 export const UpdateSubjectModal: FC<Props> = ({ closeModal, subject }) => {
   return (
     <UiModal onClickClose={closeModal} className='space-y-4'>
-      <h2 className='text-lg font-semibold'>Редактирование учебной дисциплины</h2>
+      <h2 className='pr-9 text-lg font-semibold'>Редактирование учебной дисциплины</h2>
       <UpdateSubjectForm closeModal={closeModal} subject={subject} />
     </UiModal>
   );

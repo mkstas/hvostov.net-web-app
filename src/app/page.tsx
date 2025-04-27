@@ -1,30 +1,25 @@
 import { Metadata } from 'next';
 import { AuthProvider } from '@/shared/providers';
+import { UiLink, UiLogo } from '@/components';
 import { ROUTES } from '@/shared/routes';
-import { UiDelimiter, UiLink, UiLogo, UiSheet } from '@/components';
-import { UserLoginForm } from '@/features/user-login-form';
 
 export const metadata: Metadata = {
-  title: 'АнтиХвост | Вход в аккаунт',
+  title: 'АнтиХвост',
 };
 
 export default function Index() {
   return (
     <AuthProvider>
-      <div className='mx-auto max-w-sm space-y-8 py-32'>
-        <UiLogo className='mx-auto' />
-        <UiSheet>
-          <div className='space-y-4'>
-            <h1 className='text-center text-xl font-semibold'>Вход в аккаунт</h1>
-            <UserLoginForm />
-            <UiDelimiter className='mx-auto w-4/5' />
-            <div className='text-center'>
-              <span>Нет аккаунта? </span>
-              <UiLink href={ROUTES.REGISTER}>Зарегистрироваться</UiLink>
-            </div>
-          </div>
-        </UiSheet>
-      </div>
+      <main>
+        <h1>
+          <span className='hidden'>АнтиХвост</span>
+          <UiLogo />
+        </h1>
+        <div>
+          <UiLink href={ROUTES.LOGIN}>Войти</UiLink>
+          <UiLink href={ROUTES.REGISTER}>Регистрация</UiLink>
+        </div>
+      </main>
     </AuthProvider>
   );
 }

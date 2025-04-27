@@ -23,6 +23,10 @@ export const TaskItemModal: FC<Props> = ({ taskId, onCloseModal }) => {
     onCloseModal();
   };
 
+  const onCLickUnDone = async () => {
+    await updateTask({ taskId: task?.taskId, isDone: false });
+  };
+
   const onClickDelete = async () => {
     await deleteTask(task!.taskId);
     onCloseModal();
@@ -36,10 +40,17 @@ export const TaskItemModal: FC<Props> = ({ taskId, onCloseModal }) => {
       <UiDelimiter className='my-4' />
       <SubtaskLIst taskId={taskId} />
       <UiDelimiter className='my-4' />
-      <div className='flex justify-end space-x-4'>
-        <UiButton onClick={onClickDone} color='green'>
-          Выполнить
-        </UiButton>
+      <div className='flex justify-end gap-x-4'>
+        {!isLoading && task?.isDone && (
+          <UiButton onClick={onCLickUnDone} color='blue'>
+            Возобновить
+          </UiButton>
+        )}
+        {!isLoading && !task?.isDone && (
+          <UiButton onClick={onClickDone} color='green'>
+            Выполнить
+          </UiButton>
+        )}
         <UiButton onClick={onClickDelete} color='red'>
           Удалить
         </UiButton>

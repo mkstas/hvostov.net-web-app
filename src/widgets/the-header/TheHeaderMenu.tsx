@@ -2,17 +2,23 @@
 
 import { FC } from 'react';
 import { useOpenSubmenu } from '@/shared/utils';
-import { OpenHeaderSubmenu } from '@/features/open-header-submenu';
 import { TheHeaderSubmenu } from './TheHeaderSubmenu';
+import { UserIcon } from '@heroicons/react/24/solid';
 
 export const TheHeaderMenu: FC = () => {
   const { isOpenSubmenu, openSubmenu } = useOpenSubmenu('headerSubmenu', 'headerOpenMenu');
 
   return (
-    <div className='relative'>
-      <ul className='flex items-center space-x-3'>
+    <div>
+      <ul className='flex items-center gap-x-3'>
         <li className='flex'>
-          <OpenHeaderSubmenu onClickButton={openSubmenu} />
+          <button
+            onClick={openSubmenu}
+            id='headerOpenMenu'
+            className='bg-c-orange-500 hover:bg-c-orange-600 outline-c-orange-500 cursor-pointer rounded-xl p-2 outline-offset-3 transition-colors'
+          >
+            <UserIcon className='size-5 text-white' />
+          </button>
         </li>
       </ul>
       {isOpenSubmenu && <TheHeaderSubmenu />}

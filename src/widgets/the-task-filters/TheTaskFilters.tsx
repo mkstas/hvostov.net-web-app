@@ -11,29 +11,26 @@ export const TheTaskFilters: FC = () => {
 
   return (
     <>
+      <div className='fixed bottom-0 left-0 z-20 w-full rounded-t-3xl bg-white lg:hidden'>
+        <button onClick={() => setIsOpenFilters(!isOpenFilters)} className='group w-full cursor-pointer p-4'>
+          <FunnelIcon className='text-c-slate-500 group-hover:text-c-blue-500 mx-auto size-4 transition-colors' />
+        </button>
+      </div>
       <div
-        className={cn('max-lg:fixed max-lg:top-0 max-lg:left-0 max-lg:h-full max-lg:w-full', {
-          'max-lg:bg-c-slate-600/20 z-50': isOpenFilters,
+        className={cn('grid max-lg:fixed max-lg:left-0 max-lg:h-full max-lg:w-full', {
+          'max-lg:bg-c-slate-600/20 top-0 max-lg:z-50 max-lg:grid-rows-[1fr_auto] max-lg:items-end': isOpenFilters,
+          'max-lg:-bottom-full': !isOpenFilters,
         })}
       >
-        <div
-          className={cn(
-            'max-lg:fixed max-lg:-bottom-120 max-lg:left-0 max-lg:z-50 max-lg:max-h-96 max-lg:w-full max-lg:overflow-y-auto max-lg:rounded-t-3xl lg:space-y-4',
-            { 'max-lg:-translate-y-132': isOpenFilters },
-          )}
-        >
+        <div className='max-lg:h-full max-lg:max-h-96 max-lg:overflow-y-auto max-lg:rounded-t-3xl max-lg:bg-white lg:grid lg:gap-y-4'>
           <FilterSubjects />
           <TheFilterTaskTypes />
         </div>
-      </div>
-      <div
-        className={cn('fixed bottom-0 left-0 z-50 flex w-full bg-white lg:hidden', {
-          'rounded-t-3xl': !isOpenFilters,
-        })}
-      >
-        <button onClick={() => setIsOpenFilters(!isOpenFilters)} className='flex-1 p-4'>
-          <FunnelIcon className='text-c-slate-500 mx-auto size-4' />
-        </button>
+        <div className='bg-white lg:hidden'>
+          <button onClick={() => setIsOpenFilters(!isOpenFilters)} className='group w-full cursor-pointer p-4'>
+            <FunnelIcon className='text-c-slate-500 group-hover:text-c-blue-500 mx-auto size-4 transition-colors' />
+          </button>
+        </div>
       </div>
     </>
   );

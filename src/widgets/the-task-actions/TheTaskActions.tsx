@@ -2,17 +2,17 @@
 
 import { FC } from 'react';
 import { useOpenModal } from '@/shared/utils';
-import { OpenCreateTask } from '@/features/open-create-task';
+import { UiButton } from '@/components';
 import { CreateTaskModal } from './CreateTaskModal';
 
 export const TheTaskActions: FC = () => {
   const { isOpenModal, openModal, closeModal } = useOpenModal('modalOverlay', 'modalCloseButton');
 
   return (
-    <div className='grid grid-cols-[1fr_auto] items-center space-x-4'>
+    <div className='grid grid-cols-[1fr_auto] items-center gap-x-4'>
       <div></div>
       <div>
-        <OpenCreateTask onClickButton={openModal} />
+        <UiButton onClick={openModal}>Добавить работу</UiButton>
         {isOpenModal && <CreateTaskModal closeModal={closeModal} />}
       </div>
     </div>

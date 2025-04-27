@@ -2,6 +2,7 @@
 
 import { FC, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { ClipboardDocumentListIcon } from '@heroicons/react/24/solid';
 import { useOpenModal } from '@/shared/utils';
 import { Task, useFindTasksQuery } from '@/entities/tasks';
 import { TaskItem, TaskItemSkeleton } from './task-item';
@@ -9,7 +10,7 @@ import { TaskItemModal } from './task-item-modal';
 
 export const TheTaskList: FC = () => {
   const searchParams = useSearchParams();
-  const { data: tasks, isLoading, isSuccess } = useFindTasksQuery(searchParams.toString());
+  const { data: tasks, isLoading, isSuccess, isError } = useFindTasksQuery(searchParams.toString());
   const { isOpenModal, openModal, closeModal } = useOpenModal('modalOverlay', 'modalCloseButton');
   const [currentTask, setCurrentTask] = useState<Task | null>(null);
 
@@ -20,7 +21,7 @@ export const TheTaskList: FC = () => {
 
   return (
     <div>
-      <ul className='grid grid-cols-2 gap-4 md:grid-cols-3'>
+      <ul className='grid gap-4 sm:grid-cols-2 md:grid-cols-3'>
         {!isLoading &&
           isSuccess &&
           tasks.map(task => (
@@ -37,6 +38,12 @@ export const TheTaskList: FC = () => {
               </li>
             ))}
       </ul>
+      {!isLoading && isError && (
+        <div className='text-c-slate-500 grid justify-center gap-y-4 py-8'>
+          <ClipboardDocumentListIcon className='mx-auto size-12' />
+          <div>Работ еще нет</div>
+        </div>
+      )}
       {isOpenModal && <TaskItemModal taskId={currentTask!.taskId} onCloseModal={closeModal} />}
     </div>
   );

@@ -1,6 +1,7 @@
 export const ROUTES = {
   INDEX: '/',
-  REGISTER: '/register',
+  LOGIN: '/auth',
+  REGISTER: '/auth/register',
   DASHBOARD: '/dashboard',
   SETTINGS: '/dashboard/settings',
 };

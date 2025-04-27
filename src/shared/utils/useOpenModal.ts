@@ -7,17 +7,19 @@ export const useOpenModal = (overlayId: string, closeButtonId: string) => {
 
   const openModal = () => {
     setIsOpenModal(true);
+    document.body.classList.add('overflow-hidden');
   };
 
   const closeModal = () => {
     setIsOpenModal(false);
+    document.body.classList.remove('overflow-hidden');
   };
 
   const onClickModal = useCallback(
     (event: Event) => {
       const modalOverlay = (event?.target as HTMLElement) === document.getElementById(overlayId);
       const modalCloseButton = (event?.target as HTMLElement).closest(`#${closeButtonId}`);
-      if (modalOverlay || modalCloseButton) setIsOpenModal(false);
+      if (modalOverlay || modalCloseButton) closeModal();
     },
     [closeButtonId, overlayId],
   );

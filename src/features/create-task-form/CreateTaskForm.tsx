@@ -56,34 +56,38 @@ export const CreateTaskForm: FC<Props> = ({ closeModal }) => {
           />
         )}
       />
-      <Controller
-        control={control}
-        name='subjectId'
-        defaultValue={subjects![0].subjectId}
-        render={({ field }) => (
-          <UiSelect
-            id='subjectId'
-            label='Учебная дисциплина'
-            error={formState.errors.subjectId?.message}
-            options={convertSubjectsToOptions()}
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name='taskTypeId'
-        defaultValue={taskTypes![0].taskTypeId}
-        render={({ field }) => (
-          <UiSelect
-            id='taskTypeId'
-            label='Тип работы'
-            error={formState.errors.taskTypeId?.message}
-            options={convertTaskTypesToOptions()}
-            {...field}
-          />
-        )}
-      />
+      {subjects && (
+        <Controller
+          control={control}
+          name='subjectId'
+          defaultValue={subjects[0].subjectId}
+          render={({ field }) => (
+            <UiSelect
+              id='subjectId'
+              label='Учебная дисциплина'
+              error={formState.errors.subjectId?.message}
+              options={convertSubjectsToOptions()}
+              {...field}
+            />
+          )}
+        />
+      )}
+      {taskTypes && (
+        <Controller
+          control={control}
+          name='taskTypeId'
+          defaultValue={taskTypes[0].taskTypeId}
+          render={({ field }) => (
+            <UiSelect
+              id='taskTypeId'
+              label='Тип работы'
+              error={formState.errors.taskTypeId?.message}
+              options={convertTaskTypesToOptions()}
+              {...field}
+            />
+          )}
+        />
+      )}
       <Controller
         control={control}
         name='description'

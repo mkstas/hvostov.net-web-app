@@ -8,17 +8,19 @@ import { UiButton, UiForm, UiInput } from '@/components';
 import { AuthData, useRegisterUserMutation } from '@/entities/users';
 
 export const UserRegisterForm: FC = () => {
-  const { control, formState, handleSubmit, setError } = useForm<AuthData>({ mode: 'onChange' });
+  const { control, formState, handleSubmit, setError, setValue } = useForm<AuthData>({ mode: 'onChange' });
   const [registerUser, { isLoading, isSuccess, isError }] = useRegisterUserMutation();
 
   useEffect(() => {
     if (isSuccess) {
+      setValue('password', '');
+      setValue('email', '');
       redirect(ROUTES.DASHBOARD);
     }
     if (!isLoading && isError) {
       setError('email', { message: 'Электронная почта уже занята' });
     }
-  }, [isSuccess, isLoading, isError, setError]);
+  }, [isSuccess, isLoading, isError, setError, setValue]);
 
   return (
     <UiForm onSubmit={handleSubmit(formData => registerUser(formData))}>

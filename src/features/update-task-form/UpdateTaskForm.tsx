@@ -13,7 +13,7 @@ interface Props {
 
 export const UpdateTaskForm: FC<Props> = ({ closeEdit, task }) => {
   const { control, formState, handleSubmit } = useForm<Partial<Task>>({ mode: 'onChange' });
-  const { convertSubjectsToOptions, convertTaskTypesToOptions } = useUpdateTaskForm();
+  const { subjects, taskTypes, convertSubjectsToOptions, convertTaskTypesToOptions } = useUpdateTaskForm();
   const [updateTask, { isSuccess }] = useUpdateTaskMutation();
   const date = new Date(task.deadline).toLocaleString('en-CA', { year: 'numeric', month: 'numeric', day: 'numeric' });
 
@@ -25,7 +25,7 @@ export const UpdateTaskForm: FC<Props> = ({ closeEdit, task }) => {
 
   return (
     <UiForm onSubmit={handleSubmit(formData => updateTask({ taskId: task.taskId, ...formData }))}>
-      <div className='grid items-end max-sm:space-y-4 sm:grid-cols-2 sm:space-x-4'>
+      <div className='grid items-end max-sm:gap-y-4 sm:grid-cols-2 sm:gap-x-4'>
         <Controller
           control={control}
           name='title'
@@ -62,36 +62,42 @@ export const UpdateTaskForm: FC<Props> = ({ closeEdit, task }) => {
           )}
         />
       </div>
-      <div className='grid items-end max-sm:space-y-4 sm:grid-cols-2 sm:space-x-4'>
-        <Controller
-          control={control}
-          name='subjectId'
-          defaultValue={task.subjectId}
-          render={({ field }) => (
-            <UiSelect
-              id='subjectId'
-              label='Учебная дисциплина'
-              error={formState.errors.subjectId?.message}
-              options={convertSubjectsToOptions()}
-              {...field}
+      {(subjects || taskTypes) && (
+        <div className='grid items-end max-sm:gap-y-4 sm:grid-cols-2 sm:gap-x-4'>
+          {subjects && (
+            <Controller
+              control={control}
+              name='subjectId'
+              defaultValue={task.subjectId || subjects[0].subjectId}
+              render={({ field }) => (
+                <UiSelect
+                  id='subjectId'
+                  label='Учебная дисциплина'
+                  error={formState.errors.subjectId?.message}
+                  options={convertSubjectsToOptions()}
+                  {...field}
+                />
+              )}
             />
           )}
-        />
-        <Controller
-          control={control}
-          name='taskTypeId'
-          defaultValue={task.taskTypeId}
-          render={({ field }) => (
-            <UiSelect
-              id='taskTypeId'
-              label='Тип работы'
-              error={formState.errors.taskTypeId?.message}
-              options={convertTaskTypesToOptions()}
-              {...field}
+          {taskTypes && (
+            <Controller
+              control={control}
+              name='taskTypeId'
+              defaultValue={task.taskTypeId || taskTypes[0].taskTypeId}
+              render={({ field }) => (
+                <UiSelect
+                  id='taskTypeId'
+                  label='Тип работы'
+                  error={formState.errors.taskTypeId?.message}
+                  options={convertTaskTypesToOptions()}
+                  {...field}
+                />
+              )}
             />
           )}
-        />
-      </div>
+        </div>
+      )}
       <Controller
         control={control}
         name='description'

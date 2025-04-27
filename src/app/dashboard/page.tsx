@@ -13,7 +13,7 @@ export default function Dashboard() {
     <div className='grid items-start gap-4 lg:grid-cols-[1fr_3fr]'>
       <TheTaskFilters />
       <UiSheet>
-        <section className='relative z-10 space-y-4'>
+        <section className='space-y-4'>
           <TheTaskActions />
           <TheTaskList />
         </section>

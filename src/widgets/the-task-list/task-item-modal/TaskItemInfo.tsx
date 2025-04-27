@@ -1,8 +1,8 @@
 import { FC } from 'react';
+import { PencilSquareIcon } from '@heroicons/react/24/solid';
 import { cn } from '@/shared/utils';
 import { Task } from '@/entities/tasks';
 import { useFindSubtasksQuery } from '@/entities/subtasks';
-import { OpenUpdateTask } from '@/features/open-update-task';
 import { useTask } from '../useTask';
 
 interface Props {
@@ -18,14 +18,22 @@ export const TaskItemInfo: FC<Props> = ({ task, onClickUpdate }) => {
 
   return (
     <section className='relative space-y-2'>
-      <div className='absolute top-10 right-0'>
-        <OpenUpdateTask onClickButton={onClickUpdate} />
+      <div className='absolute top-0 right-12'>
+        <button
+          className='hover:bg-c-slate-300 outline-c-slate-600 cursor-pointer rounded-xl p-2 transition-colors'
+          onClick={onClickUpdate}
+        >
+          <PencilSquareIcon className='text-c-slate-500 size-5' />
+        </button>
       </div>
       <div>
         <h2 className='text-2xl font-semibold'>{task.title}</h2>
-        <div className='text-c-slate-500 text-sm'>
-          {getSubject()}, {getTaskType()}
-        </div>
+        {(getSubject() || getTaskType()) && (
+          <div className='text-c-slate-500 text-sm'>
+            {getSubject() && `${getSubject()}, `}
+            {getTaskType()}
+          </div>
+        )}
         <time dateTime={convertDeadline()} className='text-sm'>
           Срок сдачи: {convertDeadline()}
         </time>

@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className='flex h-screen items-center justify-center space-y-4 px-2'>
-      <div className='flex w-full items-center justify-center space-x-4'>
+    <div className='flex h-screen items-center justify-center gap-y-4 px-2'>
+      <div className='flex w-full items-center justify-center gap-x-4'>
         <UiDelimiter className='w-full max-w-60' />
         <div className='space-y-2 text-center'>
           <h1 className='text-base font-medium'>Страница не найдена</h1>

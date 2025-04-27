@@ -18,7 +18,7 @@ export const SubtaskItem: FC<Props> = ({ subtask }) => {
   return (
     <div className='grid grid-cols-[1fr_auto] items-center'>
       <p className={cn({ 'text-c-slate-500 line-through': subtask.isDone })}>{subtask.description}</p>
-      <div className='flex space-x-1'>
+      <div className='flex gap-x-1'>
         {!subtask.isDone && (
           <UiButton onClick={onClickDone} color='green' className='rounded-lg p-1'>
             <CheckIcon className='size-4' />
