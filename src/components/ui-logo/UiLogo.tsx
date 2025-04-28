@@ -1,10 +1,19 @@
 import { FC } from 'react';
 import Image from 'next/image';
+import { Pacifico } from 'next/font/google';
+import { cn } from '@/shared/utils';
+
+const pacifico = Pacifico({ weight: '400', display: 'swap' });
 
 interface Props {
   className?: string;
 }
 
 export const UiLogo: FC<Props> = ({ className }) => {
-  return <Image src='/logo.png' alt='Логотип' className={className} width='130' height='27' priority={true} />;
+  return (
+    <div className={cn('flex items-center justify-center gap-x-2', pacifico.className, className)}>
+      <Image src='logotype.svg' alt='Иконка логитипа' width={32} height={32} />
+      <div className='text-2xl'>Антихвост</div>
+    </div>
+  );
 };

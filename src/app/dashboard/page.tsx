@@ -5,7 +5,7 @@ import { TheTaskActions } from '@/widgets/the-task-actions';
 import { TheTaskList } from '@/widgets/the-task-list';
 
 export const metadata: Metadata = {
-  title: 'АнтиХвост',
+  title: 'АнтиХвост | Панель управления',
 };
 
 export default function Dashboard() {
