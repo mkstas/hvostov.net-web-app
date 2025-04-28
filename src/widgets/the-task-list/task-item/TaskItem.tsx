@@ -15,10 +15,12 @@ interface Props {
 export const TaskItem: FC<Props> = ({ task, onClickTask }) => {
   const { convertDeadline, getSubject, getTaskType } = useTask(task.deadline, task.subjectId, task.taskTypeId);
   const { data: subtasks, isSuccess, isLoading } = useFindSubtasksQuery(task.taskId);
+
   const isDoneSubtasks = subtasks?.filter(item => item.isDone);
   const progress = (Number(isDoneSubtasks?.length) / Number(subtasks?.length)) * 100;
-  const unix = Date.now();
-  const unixDeadline = Date.parse(task.deadline);
+
+  const currentUnix = Date.parse(new Date().toString());
+  const deadlineUnix = Date.parse(task.deadline) + 86400000;
 
   if (isLoading) {
     return <TaskItemSkeleton />;
@@ -32,8 +34,8 @@ export const TaskItem: FC<Props> = ({ task, onClickTask }) => {
         {
           'border-c-green-500 bg-c-green-500/5 hover:bg-c-green-500/10': task.isDone,
           'border-c-orange-500 bg-c-orange-500/5 hover:bg-c-orange-500/10':
-            !task.isDone && unixDeadline - unix + 86400000 < 86400000 * 3 && !(unixDeadline - unix < 0),
-          'border-c-red-500 bg-c-red-500/5 hover:bg-c-red-500/10': !task.isDone && unixDeadline - unix < 0,
+            !task.isDone && deadlineUnix - currentUnix < 86400000 * 3 && !(deadlineUnix - currentUnix < 0),
+          'border-c-red-500 bg-c-red-500/5 hover:bg-c-red-500/10': !task.isDone && deadlineUnix - currentUnix < 0,
         },
       )}
     >

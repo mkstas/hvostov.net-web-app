@@ -11,9 +11,9 @@ export const useOpenSubmenu = (submenuId: string, openSubmenuId: string) => {
 
   const closeSubmenu = useCallback(
     (event: Event) => {
-      const headerSubmenu = (event?.target as HTMLElement).closest(`#${submenuId}`);
-      const headerOpenSubmenu = (event?.target as HTMLElement).closest(`#${openSubmenuId}`);
-      if (!headerSubmenu && !headerOpenSubmenu) setIsOpenSubmenu(false);
+      const submenu = (event?.target as HTMLElement).closest(`#${submenuId}`);
+      const openSubmenu = (event?.target as HTMLElement).closest(`#${openSubmenuId}`);
+      if (!submenu && !openSubmenu) setIsOpenSubmenu(false);
     },
     [submenuId, openSubmenuId],
   );

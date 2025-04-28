@@ -3,5 +3,4 @@ export interface Subtask {
   taskId: number;
   description: string;
   isDone: boolean;
-  isHidden: boolean;
 }
