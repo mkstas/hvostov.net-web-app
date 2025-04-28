@@ -25,7 +25,7 @@ export const UpdateTaskForm: FC<Props> = ({ closeEdit, task }) => {
 
   return (
     <UiForm onSubmit={handleSubmit(formData => updateTask({ taskId: task.taskId, ...formData }))}>
-      <div className='grid items-end max-sm:gap-y-4 sm:grid-cols-2 sm:gap-x-4'>
+      <div className='grid items-start max-sm:gap-y-4 sm:grid-cols-2 sm:gap-x-4'>
         <Controller
           control={control}
           name='title'
