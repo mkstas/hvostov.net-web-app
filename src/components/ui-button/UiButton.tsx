@@ -4,7 +4,7 @@ import { cn } from '@/shared/utils';
 interface Props extends PropsWithChildren {
   className?: string;
   variant?: 'md' | 'lg';
-  color?: 'blue' | 'red' | 'green';
+  color?: 'blue' | 'red' | 'green' | 'slate';
   disabled?: boolean;
   type?: 'submit' | 'reset' | 'button';
   onClick?: () => void;
@@ -29,6 +29,8 @@ export const UiButton: FC<Props> = props => {
           'bg-c-red-400': disabled && color === 'red',
           'bg-c-green-500 outline-c-green-500 hover:bg-c-green-600': !disabled && color === 'green',
           'bg-c-green-400': disabled && color === 'green',
+          'bg-c-slate-200 outline-c-slate-500 hover:bg-c-slate-300 text-c-slate-500': !disabled && color === 'slate',
+          'bg-c-slate-400': disabled && color === 'green',
           'cursor-pointer': !disabled,
           'cursor-not-allowed': disabled,
         },

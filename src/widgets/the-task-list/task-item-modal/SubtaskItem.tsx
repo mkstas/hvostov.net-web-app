@@ -13,13 +13,18 @@ export const SubtaskItem: FC<Props> = ({ subtask }) => {
   const [deleteSubtask, {}] = useDeleteSubtaskMutation();
 
   const onClickDone = () => updateSubtask({ subtaskId: subtask.subtaskId, isDone: true });
+  const onClickUnDone = () => updateSubtask({ subtaskId: subtask.subtaskId, isDone: false });
   const onClickDelete = () => deleteSubtask(subtask.subtaskId);
 
   return (
     <div className='grid grid-cols-[1fr_auto] items-center'>
       <p className={cn({ 'text-c-slate-500 line-through': subtask.isDone })}>{subtask.description}</p>
       <div className='flex gap-x-1'>
-        {!subtask.isDone && (
+        {subtask.isDone ? (
+          <UiButton onClick={onClickUnDone} color='slate' className='rounded-lg p-1'>
+            <CheckIcon className='size-4' />
+          </UiButton>
+        ) : (
           <UiButton onClick={onClickDone} color='green' className='rounded-lg p-1'>
             <CheckIcon className='size-4' />
           </UiButton>

@@ -47,8 +47,8 @@ export const TaskItemModal: FC<Props> = ({ taskId, onCloseModal }) => {
           </UiButton>
         )}
         {!isLoading && !task?.isDone && (
-          <UiButton onClick={onClickDone} color='green'>
-            Выполнить
+          <UiButton onClick={onClickDone} color='blue'>
+            Завершить работу
           </UiButton>
         )}
         <UiButton onClick={onClickDelete} color='red'>
