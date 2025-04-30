@@ -6,7 +6,7 @@ interface Props {
   closeModal: () => void;
 }
 
-export const CreateTaskModal: FC<Props> = ({ closeModal }) => {
+export const CreateTaskItemModal: FC<Props> = ({ closeModal }) => {
   return (
     <UiModal onClickClose={closeModal} className='space-y-4'>
       <h2 className='text-xl font-semibold'>Создание работы</h2>

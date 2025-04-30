@@ -8,24 +8,29 @@ import { UiButton } from '@/components';
 import { Task, useFindTasksQuery } from '@/entities/tasks';
 import { TaskItem, TaskItemSkeleton } from './task-item';
 import { TaskItemModal } from './task-item-modal';
-import { CreateTaskModal } from './CreateTaskModal';
+import { CreateTaskItemModal } from './CreateTaskItemModal';
 
 export const TheTaskList: FC = () => {
-  const [filteredTasks, setFilteredTasks] = useState<Task[] | undefined>(undefined);
+  const [filteredTasks, setFilteredTasks] = useState<Task[] | undefined>();
+  const [currentTask, setCurrentTask] = useState<Task | undefined>();
   const searchParams = useSearchParams();
-  const { data: tasks, isLoading, isSuccess, isError } = useFindTasksQuery(searchParams.toString());
-  const { isOpenModal, openModal, closeModal } = useOpenModal('modalOverlay', 'modalCloseButton');
+  const { data: tasks, isLoading, isSuccess } = useFindTasksQuery(searchParams.toString());
+
+  const {
+    isOpenModal: isOpenModalTask,
+    openModal: openModalTask,
+    closeModal: closeModalTask,
+  } = useOpenModal('modalOverlay', 'modalCloseButton');
+
   const {
     isOpenModal: isOpenModalCreate,
     openModal: openModalCreate,
     closeModal: closeModalCreate,
   } = useOpenModal('modalOverlay', 'modalCloseButton');
 
-  const [currentTask, setCurrentTask] = useState<Task | null>(null);
-
   const onClickTask = (task: Task) => {
     setCurrentTask(task);
-    openModal();
+    openModalTask();
   };
 
   const searchTasks = (event: ChangeEvent<HTMLInputElement>) => {
@@ -40,8 +45,8 @@ export const TheTaskList: FC = () => {
   }, [isSuccess, tasks]);
 
   return (
-    <section className='space-y-4'>
-      <div className='grid grid-cols-[1fr_auto] items-center gap-x-4'>
+    <>
+      <div className='grid items-center gap-4 sm:grid-cols-[1fr_auto]'>
         <div className='relative'>
           <input
             onChange={event => searchTasks(event)}
@@ -51,8 +56,10 @@ export const TheTaskList: FC = () => {
           <MagnifyingGlassIcon className='text-c-slate-500 absolute top-1/2 right-4 size-4 -translate-y-1/2' />
         </div>
         <div>
-          <UiButton onClick={openModalCreate}>Добавить работу</UiButton>
-          {isOpenModalCreate && <CreateTaskModal closeModal={closeModalCreate} />}
+          <UiButton onClick={openModalCreate} className='max-sm:w-full'>
+            Добавить работу
+          </UiButton>
+          {isOpenModalCreate && <CreateTaskItemModal closeModal={closeModalCreate} />}
         </div>
       </div>
       <div>
@@ -73,15 +80,14 @@ export const TheTaskList: FC = () => {
                 </li>
               ))}
         </ul>
-        {(!isLoading && isError) ||
-          (!filteredTasks?.length && (
-            <div className='text-c-slate-500 grid justify-center gap-y-4 py-8'>
-              <ClipboardDocumentListIcon className='mx-auto size-12' />
-              <div>Работ еще нет</div>
-            </div>
-          ))}
-        {isOpenModal && <TaskItemModal taskId={currentTask!.taskId} onCloseModal={closeModal} />}
+        {!isLoading && !filteredTasks?.length && (
+          <div className='text-c-slate-500 grid justify-center gap-y-4 py-8'>
+            <ClipboardDocumentListIcon className='mx-auto size-12' />
+            <div>Работ еще нет</div>
+          </div>
+        )}
+        {isOpenModalTask && <TaskItemModal taskId={currentTask!.taskId} onCloseModal={closeModalTask} />}
       </div>
-    </section>
+    </>
   );
 };
