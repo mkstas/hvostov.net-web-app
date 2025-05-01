@@ -39,10 +39,10 @@ export const TheTaskList: FC = () => {
   };
 
   useEffect(() => {
-    if (isSuccess) {
+    if (!isLoading && isSuccess) {
       setFilteredTasks(tasks);
     }
-  }, [isSuccess, tasks]);
+  }, [isLoading, isSuccess, tasks]);
 
   return (
     <>
@@ -81,9 +81,9 @@ export const TheTaskList: FC = () => {
               ))}
         </ul>
         {!isLoading && !filteredTasks?.length && (
-          <div className='text-c-slate-500 grid justify-center gap-y-4 py-8'>
-            <ClipboardDocumentListIcon className='mx-auto size-12' />
-            <div>Работ еще нет</div>
+          <div className='grid justify-center gap-y-4 py-8'>
+            <ClipboardDocumentListIcon className='text-c-slate-500 mx-auto size-12' />
+            <div className='font-medium'>Работы не найдены</div>
           </div>
         )}
         {isOpenModalTask && <TaskItemModal taskId={currentTask!.taskId} onCloseModal={closeModalTask} />}
