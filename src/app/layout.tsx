@@ -12,6 +12,7 @@ export default function IndexLayout({ children }: PropsWithChildren) {
     <html lang='ru' className={onest.className}>
       <head>
         <link rel='icon' type='image/x-icon' href='/favicon.ico' />
+        <meta http-equiv='Content-Security-Policy' content='upgrade-insecure-requests' />
       </head>
       <body className='bg-c-slate-200 text-c-slate-600'>
         <StoreProvider>{children}</StoreProvider>
