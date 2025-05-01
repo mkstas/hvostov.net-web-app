@@ -1,0 +1,12 @@
+services:
+  nextapp:
+    container_name: nextapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 8000:8000
+    command: npm run start
