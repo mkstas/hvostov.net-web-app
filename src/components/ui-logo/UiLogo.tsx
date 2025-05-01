@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Pacifico } from 'next/font/google';
 import { cn } from '@/shared/utils';
 
-const pacifico = Pacifico({ weight: '400', display: 'swap' });
+const pacifico = Pacifico({ subsets: ['cyrillic-ext', 'latin-ext'], weight: '400' });
 
 interface Props {
   className?: string;
