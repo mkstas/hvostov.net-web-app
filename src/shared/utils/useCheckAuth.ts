@@ -9,13 +9,13 @@ export const useCheckAuth = () => {
   useEffect(() => {
     const query = async () => {
       try {
-        let response = await fetch(`http://${process.env.API_URL}/api/auth/check`, {
+        let response = await fetch(`${process.env.API_URL}/api/auth/check`, {
           credentials: 'include',
         });
         if (response.status === 200) {
           setIsLoggedIn(true);
         } else {
-          response = await fetch(`http://${process.env.API_URL}/api/auth/refresh`, {
+          response = await fetch(`${process.env.API_URL}/api/auth/refresh`, {
             credentials: 'include',
           });
           if (response.status === 200) setIsLoggedIn(true);
