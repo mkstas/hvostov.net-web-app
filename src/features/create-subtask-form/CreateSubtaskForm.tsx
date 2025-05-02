@@ -27,7 +27,7 @@ export const CreateSubtaskForm: FC<Props> = ({ taskId }) => {
 
   return (
     <UiForm onSubmit={handleSubmit(formData => onSubmitForm(formData))}>
-      <div className='grid grid-cols-[1fr_auto] items-start gap-x-4'>
+      <div className='grid items-start gap-4 sm:grid-cols-[1fr_auto]'>
         <Controller
           control={control}
           name='description'

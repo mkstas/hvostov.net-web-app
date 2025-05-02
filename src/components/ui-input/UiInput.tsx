@@ -22,7 +22,7 @@ const UiInput = forwardRef<HTMLInputElement, Props>((props, ref) => {
         ref={ref}
         {...updatedProps}
         className={cn(
-          'placeholder:text-c-slate-500 rounded-xl border bg-white outline-none focus:ring',
+          'placeholder:text-c-slate-500 rounded-xl border bg-white outline-none focus:ring w-full',
           {
             'px-3 py-1.75': variant === 'md',
             'px-4 py-2.75': variant === 'lg',
