@@ -2,12 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query';
 
-export const api = createApi({
+const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.API_URL}`,
     credentials: 'include',
   }),
   endpoints: () => ({}),
+  tagTypes: ['subjects', 'taskTypes', 'tasks', 'subtasks'],
 });
 
 export const store = configureStore({

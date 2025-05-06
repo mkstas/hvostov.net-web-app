@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { ROUTES } from '@/shared/routes';
-import { UiDelimiter, UiLink } from '@/shared/ui';
+import { UiDelimiter, UiLink } from '@/components';
 
 export const metadata: Metadata = {
   title: 'АнтиХвост | Страница не найдена',

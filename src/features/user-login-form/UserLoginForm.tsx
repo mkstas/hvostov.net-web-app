@@ -4,8 +4,8 @@ import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { redirect } from 'next/navigation';
 import { ROUTES } from '@/shared/routes';
-import { UiButton, UiForm, UiInput } from '@/components';
-import { AuthData, useLoginUserMutation } from '@/entities/users';
+import { UiButton, UiForm, UiInput } from '@/shared/ui';
+import { AuthData } from '@/entities/auth';
 
 export const UserLoginForm: FC = () => {
   const { control, formState, handleSubmit, setError, setValue, setFocus } = useForm<AuthData>({ mode: 'onChange' });
@@ -13,14 +13,8 @@ export const UserLoginForm: FC = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      setValue('password', '');
-      setValue('email', '');
+      setValue('phone', '');
       redirect(ROUTES.DASHBOARD);
-    }
-    if (!isLoading && isError) {
-      setError('email', { message: 'Неверный логин или пароль' });
-      setError('password', { message: 'Неверный логин или пароль' });
-      setFocus('email');
     }
   }, [isSuccess, isError, isLoading, setError, setValue, setFocus]);
 
@@ -28,46 +22,22 @@ export const UserLoginForm: FC = () => {
     <UiForm onSubmit={handleSubmit(formData => loginUser(formData))}>
       <Controller
         control={control}
-        name='email'
+        name='phone'
         defaultValue=''
         rules={{
           required: 'Это поле обязательно',
-          pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-            message: 'Неверный формат почты',
+          minLength: {
+            value: 11,
+            message: 'Не менее 11 символов',
           },
         }}
         render={({ field }) => (
           <UiInput
             type='text'
-            id='email'
-            label='Электронная почта'
-            placeholder='example@mail.ru'
-            variant='lg'
-            error={formState.errors.email?.message}
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name='password'
-        defaultValue=''
-        rules={{
-          required: 'Это поле обязательно',
-          minLength: {
-            value: 8,
-            message: 'Не менее 8 символов',
-          },
-        }}
-        render={({ field }) => (
-          <UiInput
-            type='password'
             id='password'
             label='Пароль'
-            placeholder='••••••••'
             variant='lg'
-            error={formState.errors.password?.message}
+            error={formState.errors.phone?.message}
             {...field}
           />
         )}
