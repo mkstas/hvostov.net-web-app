@@ -5,5 +5,5 @@ export const metadata: Metadata = {
 };
 
 export default function Dashboard() {
-  return <div>Dashboard</div>;
+  return <main className='pt-4 pb-16 lg:pb-4'></main>;
 }

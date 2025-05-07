@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { Onest } from 'next/font/google';
-import '@/shared/styles.css';
-import { StoreProvider } from '@/shared/providers';
+import { StoreProvider } from '@/shared/stores';
+import '@/shared/ui/styles.css';
 
 const onest = Onest({
   subsets: ['cyrillic-ext', 'latin-ext'],

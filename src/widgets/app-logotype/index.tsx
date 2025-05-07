@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Pacifico } from 'next/font/google';
-import { cn } from '@/shared/cn';
+import { cn } from '@/shared/ui/cn';
 
 const pacifico = Pacifico({ subsets: ['cyrillic-ext', 'latin-ext'], weight: '400' });
 
@@ -8,7 +8,7 @@ interface Props {
   className?: string;
 }
 
-export const UiLogo: FC<Props> = ({ className }) => {
+export const AppLogotype: FC<Props> = ({ className }) => {
   return (
     <div className={cn('flex items-center justify-center gap-x-2', pacifico.className, className)}>
       <svg width='32' height='32' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>

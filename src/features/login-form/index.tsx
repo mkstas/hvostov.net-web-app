@@ -3,23 +3,22 @@
 import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { redirect } from 'next/navigation';
-import { ROUTES } from '@/shared/routes';
+import { AuthData, useLoginMutation } from '@/entities/auth';
 import { UiButton, UiForm, UiInput } from '@/shared/ui';
-import { AuthData } from '@/entities/auth';
 
-export const UserLoginForm: FC = () => {
-  const { control, formState, handleSubmit, setError, setValue, setFocus } = useForm<AuthData>({ mode: 'onChange' });
-  const [loginUser, { isLoading, isSuccess, isError }] = useLoginUserMutation();
+export const LoginForm: FC = () => {
+  const { control, formState, handleSubmit, setValue } = useForm<AuthData>({ mode: 'onChange' });
+  const [login, { isLoading, isSuccess, isError }] = useLoginMutation();
 
   useEffect(() => {
     if (isSuccess) {
       setValue('phone', '');
-      redirect(ROUTES.DASHBOARD);
+      redirect('/dashboard');
     }
-  }, [isSuccess, isError, isLoading, setError, setValue, setFocus]);
+  }, [isSuccess, isError, isLoading, setValue]);
 
   return (
-    <UiForm onSubmit={handleSubmit(formData => loginUser(formData))}>
+    <UiForm onSubmit={handleSubmit(formData => login(formData))}>
       <Controller
         control={control}
         name='phone'
@@ -35,7 +34,7 @@ export const UserLoginForm: FC = () => {
           <UiInput
             type='text'
             id='password'
-            label='Пароль'
+            label='Номер телефона'
             variant='lg'
             error={formState.errors.phone?.message}
             {...field}

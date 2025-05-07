@@ -1,29 +1,24 @@
 import { api } from '@/shared/stores';
-import { AuthData } from './model';
 
-// export const authApi = api.injectEndpoints({
-//   endpoints: builder => ({
-// loignUser: builder.mutation<void, AuthData>({
-//   query: body => ({ url: '/auth/login', method: 'POST', body }),
-// }),
-//     logoutUser: builder.mutation<void, void>({
-//       query: () => ({ url: '/auth/logout', method: 'DELETE' }),
-//     }),
-//     checkAuth: builder.query<void, void>({
-//       query: () => '/auth/check',
-//     }),
-//   }),
-//   overrideExisting: true,
-// });
+export interface AuthData {
+  phone: string;
+}
 
-// export const {} = authApi;
+const authApi = api.enhanceEndpoints({ addTagTypes: ['auth'] });
 
-export const authApi = api.injectEndpoints({
+const authApiTag = authApi.injectEndpoints({
   endpoints: builder => ({
     login: builder.mutation<void, AuthData>({
       query: body => ({ url: '/auth/login', method: 'POST', body }),
     }),
+    logout: builder.mutation<void, void>({
+      query: () => ({ url: '/auth/logout', method: 'DELETE' }),
+    }),
+    check: builder.query<void, void>({
+      query: () => '/auth/check',
+    }),
   }),
+  overrideExisting: true,
 });
 
-export const {} = authApi;
+export const { useLoginMutation, useLogoutMutation, useCheckQuery } = authApiTag;

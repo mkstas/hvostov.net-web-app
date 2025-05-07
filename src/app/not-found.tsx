@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
-import { ROUTES } from '@/shared/routes';
-import { UiDelimiter, UiLink } from '@/shared/ui';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'АнтиХвост | Страница не найдена',
@@ -9,13 +8,11 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <div className='flex h-screen items-center justify-center gap-y-4 px-2'>
-      <div className='flex w-full items-center justify-center gap-x-4'>
-        <UiDelimiter className='w-full max-w-60' />
-        <div className='space-y-2 text-center'>
-          <h1 className='text-base font-medium'>Страница не найдена</h1>
-          <UiLink href={ROUTES.INDEX}>Вернуться</UiLink>
-        </div>
-        <UiDelimiter className='w-full max-w-60' />
+      <div className='space-y-2 text-center'>
+        <h1 className='text-base font-medium'>Страница не найдена</h1>
+        <Link className='text-c-blue-500 outline-c-blue-500 outline-offset-3 not-hover:underline' href='/'>
+          Вернуться
+        </Link>
       </div>
     </div>
   );
