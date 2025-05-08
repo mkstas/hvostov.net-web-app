@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           <HeaderMenu />
         </header>
       </UiSheet>
-      {children}
+      <main className='pt-4 pb-16 lg:pb-4'>{children}</main>
     </UiContainer>
   );
 }
