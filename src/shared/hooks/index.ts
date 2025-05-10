@@ -1,3 +1,4 @@
+export * from './useCheckAuth';
 export * from './useModal';
-export * from './useSearchParams';
+export * from './useCustomSearchParams';
 export * from './useSubmenu';

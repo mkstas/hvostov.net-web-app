@@ -1,22 +1,16 @@
 import { Metadata } from 'next';
-import { CreateSubject } from '@/features/create-subject';
-import { UiSheet } from '@/shared/ui';
-import { SubjectList } from '@/entities/subjects/SubjectList';
+import { TheTaskFilters } from '@/widgets/the-task-filters';
+import { TheTaskList } from '@/widgets/the-task-list';
 
 export const metadata: Metadata = {
-  title: 'АнтиХвост | Учебные дисциплины',
+  title: 'АнтиХвост',
 };
 
 export default function Dashboard() {
   return (
-    <UiSheet>
-      <section className='space-y-4'>
-        <h1 className='text-xl font-semibold'>Список учебных дисциплин</h1>
-        <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-          <CreateSubject />
-          <SubjectList />
-        </div>
-      </section>
-    </UiSheet>
+    <main className='grid items-start gap-4 pt-4 pb-16 lg:grid-cols-[1fr_3fr] lg:pb-4'>
+      <TheTaskFilters />
+      <TheTaskList />
+    </main>
   );
 }

@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { useSearchParams } from '@/shared/hooks';
+import { useCustomSearchParams } from '@/shared/hooks';
 import { cn } from '@/shared/ui/cn';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 
 export const SelectSearchParam: FC<Props> = ({ param, value }) => {
   const [isSelected, setIsSelected] = useState(false);
-  const { getSearchParams, appendSearchParam, deleteSearchParam } = useSearchParams(param);
+  const { getSearchParams, appendSearchParam, deleteSearchParam } = useCustomSearchParams(param);
 
   const onClickButton = () => {
     if (getSearchParams().find(param => param === String(value.id))) {
