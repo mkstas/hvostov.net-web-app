@@ -29,7 +29,7 @@ export const TheTaskList: FC = () => {
   const { isOpenModal: isOpenModalTask, openModal: openModalTask, closeModal: closeModalTask } = useModal();
 
   const [currentTaskId, setCurrentTaskId] = useState<number>(0);
-  const [searchedTasks, setFilteredTasks] = useState<Task[]>([]);
+  const [searchedTasks, setSearchedTasks] = useState<Task[]>([]);
 
   const onClickTask = (taskId: number) => {
     setCurrentTaskId(taskId);
@@ -37,16 +37,20 @@ export const TheTaskList: FC = () => {
   };
 
   const searchTasks = (event: ChangeEvent<HTMLInputElement>) => {
-    const newTasks = tasks?.filter(task => task.title.toLowerCase().includes(event.target.value.toLowerCase()));
-    setFilteredTasks(newTasks!);
+    if (!!tasks?.length && isSuccessTasks) {
+      const newTasks = tasks?.filter(task => task.title.toLowerCase().includes(event.target.value.toLowerCase()));
+      setSearchedTasks(newTasks!);
+    } else {
+      setSearchedTasks([]);
+    }
   };
 
   useEffect(() => {
     if (isErrorTasks) {
-      setFilteredTasks([]);
+      setSearchedTasks([]);
     }
     if (!isLoadingTasks && isSuccessTasks) {
-      setFilteredTasks(tasks!);
+      setSearchedTasks(tasks);
     }
   }, [isLoadingTasks, isSuccessTasks, isErrorTasks, tasks]);
 
@@ -56,7 +60,7 @@ export const TheTaskList: FC = () => {
         {isLoadingSubject && isLoadingTaskType ? (
           <UiSkeleton className='h-10' />
         ) : (
-          <div className='grid gap-4 sm:grid-cols-[1fr_auto]'>
+          <div className='grid space-x-4 sm:grid-cols-[1fr_auto]'>
             <div className='relative'>
               <input
                 onChange={event => searchTasks(event)}
@@ -85,8 +89,7 @@ export const TheTaskList: FC = () => {
             ? Array(3)
                 .fill(0)
                 .map((_, index) => <UiSkeleton key={index} className='h-30.5 rounded-2xl' />)
-            : isSuccessTasks &&
-              !!searchedTasks.length &&
+            : !!searchedTasks.length &&
               searchedTasks?.map(task => (
                 <TaskListItem key={task.taskId} onClickTask={() => onClickTask(task.taskId)} task={task} />
               ))}
@@ -100,7 +103,7 @@ export const TheTaskList: FC = () => {
           )}
         </div>
       </section>
-      {!isLoadingTasks && isErrorTasks && !searchedTasks.length && (
+      {!isLoadingTasks && !searchedTasks.length && (
         <div className='grid justify-center gap-y-4 py-8'>
           <ClipboardDocumentListIcon className='text-c-slate-500 mx-auto size-12' />
           <div className='font-medium'>Работы не найдены</div>
