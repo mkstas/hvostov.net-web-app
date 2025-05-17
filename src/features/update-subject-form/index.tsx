@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const UpdateSubjectForm: FC<Props> = ({ subject, onCloseModal }) => {
-  const { control, formState, handleSubmit } = useForm<Partial<Subject>>();
+  const { control, formState, handleSubmit } = useForm<Partial<Subject>>({ mode: 'onChange' });
   const [updateSubject, { isSuccess }] = useUpdateSubjectMutation();
 
   useEffect(() => {
@@ -24,6 +24,10 @@ export const UpdateSubjectForm: FC<Props> = ({ subject, onCloseModal }) => {
         defaultValue={subject.title}
         rules={{
           required: 'Обязательное поле',
+          maxLength: {
+            value: 30,
+            message: 'Не более 30 символов',
+          },
         }}
         render={({ field }) => (
           <UiInput

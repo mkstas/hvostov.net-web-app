@@ -60,7 +60,7 @@ export const TheTaskList: FC = () => {
         {isLoadingSubject && isLoadingTaskType ? (
           <UiSkeleton className='h-10' />
         ) : (
-          <div className='grid space-x-4 sm:grid-cols-[1fr_auto]'>
+          <div className='grid max-sm:space-y-4 sm:grid-cols-[1fr_auto] sm:space-x-4'>
             <div className='relative'>
               <input
                 onChange={event => searchTasks(event)}
@@ -71,7 +71,9 @@ export const TheTaskList: FC = () => {
             </div>
             {!!subjects?.length && !!taskTypes?.length && (
               <div>
-                <UiButton onClick={openModalCreate}>Добавить работу</UiButton>
+                <UiButton className='w-full' onClick={openModalCreate}>
+                  Добавить работу
+                </UiButton>
                 {isOpenModalCreate && (
                   <UiModal onClickClose={closeModalCreate}>
                     <div className='space-y-4'>

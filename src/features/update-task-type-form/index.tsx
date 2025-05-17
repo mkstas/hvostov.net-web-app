@@ -26,6 +26,10 @@ export const UpdateTaskTypeForm: FC<Props> = ({ taskType, onCloseModal }) => {
         defaultValue={taskType.title}
         rules={{
           required: 'Обязательное поле',
+          maxLength: {
+            value: 30,
+            message: 'Не более 30 символов',
+          },
         }}
         render={({ field }) => (
           <UiInput

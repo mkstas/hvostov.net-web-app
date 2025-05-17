@@ -28,8 +28,8 @@ export const HeaderMenuNotifications: FC<Props> = ({ tasks, subjects }) => {
         <ul className='max-h-40 overflow-y-auto'>
           {tasks?.map((task, index) => (
             <li key={task.taskId} className='grid'>
-              <h3 className='text-base font-medium'>{task.title}</h3>
-              <p className='text-c-slate-500 text-sm'>
+              <h3 className='text-base font-medium break-all'>{task.title}</h3>
+              <p className='text-c-slate-500 text-sm break-all'>
                 {subjects?.find(subject => subject.subjectId === task.subjectId)?.title}
               </p>
               <time dateTime={task.deadline} className='flex justify-between text-sm'>

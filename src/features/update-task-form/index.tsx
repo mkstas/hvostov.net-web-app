@@ -50,6 +50,10 @@ export const UpdateTaskForm: FC<Props> = ({ task, subjects, taskTypes, onCloseUp
           defaultValue={task.title}
           rules={{
             required: 'Это поле обязательно',
+            maxLength: {
+              value: 30,
+              message: 'Не более 30 символов',
+            },
           }}
           render={({ field }) => (
             <UiInput

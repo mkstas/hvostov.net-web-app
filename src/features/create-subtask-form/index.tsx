@@ -33,6 +33,10 @@ export const CreateSubtaskForm: FC<Props> = ({ taskId }) => {
           defaultValue=''
           rules={{
             required: 'Это поле обязательно',
+            maxLength: {
+              value: 50,
+              message: 'Не более 50 символов',
+            },
           }}
           render={({ field }) => (
             <UiInput

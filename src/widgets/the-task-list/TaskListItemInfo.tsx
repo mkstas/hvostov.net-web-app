@@ -35,8 +35,8 @@ export const TaskListItemInfo: FC<Props> = ({ task, subjects, taskTypes, onClick
         </button>
       </div>
       <div>
-        <h2 className='text-xl font-semibold'>{task.title}</h2>
-        <div className='text-c-slate-500 text-sm'>
+        <h2 className='pr-24 text-xl font-semibold break-all'>{task.title}</h2>
+        <div className='text-c-slate-500 text-sm break-all'>
           {subjects.find(subject => subject.subjectId === task.subjectId)?.title}
           {', '}
           {taskTypes.find(taskType => taskType.taskTypeId === task.taskTypeId)?.title}

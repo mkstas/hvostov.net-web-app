@@ -43,9 +43,9 @@ export const TaskListItem: FC<Props> = ({ task, onClickTask }) => {
       )}
     >
       <div>
-        <h3>{task.title}</h3>
-        {!!subject?.title && <div className='text-c-slate-500 text-sm'>{subject.title}</div>}
-        {!!taskType?.title && <div className='text-c-slate-500 text-sm'>{taskType.title}</div>}
+        <h3 className='break-all'>{task.title}</h3>
+        {!!subject?.title && <div className='text-c-slate-500 text-sm break-all'>{subject.title}</div>}
+        {!!taskType?.title && <div className='text-c-slate-500 text-sm break-all'>{taskType.title}</div>}
       </div>
       <div className='self-end'>
         <time dateTime={task.deadline}>{convertDeadline()}</time>

@@ -45,6 +45,10 @@ export const CreateTaskForm: FC<Props> = ({ onCloseModal }) => {
         defaultValue=''
         rules={{
           required: 'Это поле обязательно',
+          maxLength: {
+            value: 30,
+            message: 'Не более 30 символов',
+          },
         }}
         render={({ field }) => (
           <UiInput

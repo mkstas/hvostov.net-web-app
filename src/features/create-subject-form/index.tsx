@@ -25,6 +25,10 @@ export const CreateSubjectForm: FC<Props> = ({ onCloseModal }) => {
         defaultValue=''
         rules={{
           required: 'Обязательное поле',
+          maxLength: {
+            value: 30,
+            message: 'Не более 30 символов',
+          },
         }}
         render={({ field }) => (
           <UiInput
