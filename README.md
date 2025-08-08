@@ -1,4 +1,4 @@
-# Проект АнтиХвост (клиентское приложение)
+# Проект HVOSTOV.net (клиентское приложение)
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
@@ -9,7 +9,7 @@
 
 ## Описание 📖
 
-Репозиторий содержит клиентское приложение на основе [NextJS](https://nextjs.org/), представляющее из себя веб-прложение на основе сервера [nestjs-anti-tail](https://github.com/mkstas/nestjs-anti-tail).
+Репозиторий содержит клиентское приложение на основе [NextJS](https://nextjs.org/), представляющее из себя веб-прложение на основе сервера [nestjs-anti-tail](https://github.com/mkstas/hvostov.net-api).
 
 ## Функционал ✨
 
